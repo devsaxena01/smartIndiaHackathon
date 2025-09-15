@@ -49,9 +49,9 @@ const VirtualTour = () => {
       {/* Hero Section */}
       <section className="relative">
         <img
-          src="./images/buddha.jpeg"
+          src="https://travelogyindia.b-cdn.net/blog/wp-content/uploads/2016/11/Tawang-Monastery-Sikkim.jpg"
           alt="Rumtek Monastery"
-          className="w-full h-[450px] object-cover"
+          className="w-full h-[670px] object-cover"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center px-10">
           <h2 className="text-3xl font-bold mb-3">Virtual Tour: Rumtek Monastery</h2>

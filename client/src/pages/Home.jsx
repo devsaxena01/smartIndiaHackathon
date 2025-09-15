@@ -11,7 +11,7 @@ const Home = () => {
        <section
       className="relative h-[500px] flex items-center justify-center text-center bg-cover bg-center"
       style={{
-        backgroundImage: "url('./images/buddha.jpeg')",
+        backgroundImage: "url('https://www.esikkimtourism.in/wp-content/uploads/2018/10/climate-bnnr.jpg')",
       }}
     >
       {/* Gradient Overlay */}

@@ -37,14 +37,9 @@ const Header = () => {
           </li>
         </ul>
 
-        <div className="hidden md:flex space-x-2  font-medium">
-        <div className="mt-1 mr-2">
-          <Link to="/chatbot" className=""><ChatIcon fontSize="large"/></Link>
-        </div>
         <button className="hidden md:block px-4 py-2 rounded-md bg-gray-900 text-sm text-gray-300 border border-gray-700 focus:outline-none focus:ring focus:ring-orange-500">
            <Link to="/login" className="">Login</Link>
         </button>
-        </div>
 
         {/* Mobile Menu Button */}
         <button

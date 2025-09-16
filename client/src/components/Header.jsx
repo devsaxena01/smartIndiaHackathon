@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import ChatIcon from '@mui/icons-material/Chat';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,9 +35,16 @@ const Header = () => {
           <li>
             <Link to="/booking" className="text-gray-300 hover:text-purple-400"> Booking </Link>
           </li>
-        </ul> 
+        </ul>
 
-        <button className="hidden md:block px-4 py-2 rounded-md bg-gray-900 text-sm text-gray-300 border border-gray-700 focus:outline-none focus:ring focus:ring-orange-500">Login</button>
+        <div className="hidden md:flex space-x-2  font-medium">
+        <div className="mt-1 mr-2">
+          <Link to="/chatbot" className=""><ChatIcon fontSize="large"/></Link>
+        </div>
+        <button className="hidden md:block px-4 py-2 rounded-md bg-gray-900 text-sm text-gray-300 border border-gray-700 focus:outline-none focus:ring focus:ring-orange-500">
+           <Link to="/login" className="">Login</Link>
+        </button>
+        </div>
 
         {/* Mobile Menu Button */}
         <button

@@ -67,7 +67,29 @@ const VirtualTour = () => {
       {/* Featured Virtual Tours */}
       <section className="py-12 px-6">
         <h3 className="text-2xl font-semibold text-center mb-10">Featured Virtual Tours</h3>
-        <input type=""></input>
+        <div className="pl-24 relative w-full md:w-1/3 flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <input
+              type="text"
+              placeholder="Search monasteries, locations..."
+              className="text-black w-full px-4 py-2 border border-amber-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+            />
+            <button className="absolute right-2 top-2 text-amber-600">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </button>
+          </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {tours.map((tour, index) => (
             <div key={index} className="bg-gray-900 rounded-lg shadow-md overflow-hidden">

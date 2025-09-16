@@ -24,8 +24,7 @@ const monastrySchema=new mongoose.Schema({
         required:true,
     },
     establishedYear:{
-        type:Number,
-        required:true,
+        type:Number || undefined,
     },
     contactInfo:{
         type:String,

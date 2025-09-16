@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Send, Mountain, Home } from "lucide-react";
-
+import axios from "axios"
 function Chatbot() {
   const [messages, setMessages] = useState([
     {
@@ -18,55 +18,61 @@ function Chatbot() {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-//   const handleSend = async () => {
-//     if (!input.trim()) return;
+  // Handle sending message
+  const handleSend = async () => {
+    if (!input.trim()) return;
 
-//     // Add user message
-//     setMessages((prev) => [...prev, { sender: "user", text: input }]);
-//     setIsTyping(true);
+    setMessages((prev) => [...prev, { sender: "user", text: input }]);
+    setIsTyping(true);
 
-//     try {
-//       const res = await fetch(
-//         http://localhost:8080/api/chat?query=${encodeURIComponent(input)}
-//       );
-//       const data = await res.json();
+    try {
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+const res = await fetch(
+  `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      contents: [
+        {
+          parts: [{ text: input }],
+        },
+      ],
+    }),
+  }
+);
+      const data = await res.json();
+      console.log("The data is",data)
+      const botReply =
+        data.candidates && data.candidates.length > 0
+          ? data.candidates[0].content.parts[0].text
+          : "🙏 Sorry, I couldn't fetch an answer right now.";
 
-//       const botReply = data.name
-//         ? ${data.name} (${data.sect}, ${data.district}): ${data.description}
-//         : data.message;
+      setTimeout(() => {
+        setMessages((prev) => [...prev, { sender: "bot", text: botReply }]);
+        setIsTyping(false);
+      }, 800);
 
-//       // Set monastery data for weather widget
-//       // Set monastery data for weather widget
-//       if (data.name) {
-//         setCurrentMonastery({
-//           name: data.name,
-//           district: data.district,
-//           weatherLocation: data.weatherLocation || data.location || data.name,
-//         });
-//       } else {
-//         setCurrentMonastery(null);
-//       }
+      setCurrentMonastery(null);
+    } catch (err) {
+      console.log("Error comming is",err)
+      setTimeout(() => {
+        setMessages((prev) => [
+          ...prev,
+          {
+            sender: "bot",
+            text: "🙏 Something went wrong connecting to Gemini. Please try again.",
+          },
+        ]);
+        setIsTyping(false);
+      }, 800);
+      setCurrentMonastery(null);
+    }
 
-//       setTimeout(() => {
-//         setMessages((prev) => [...prev, { sender: "bot", text: botReply }]);
-//         setIsTyping(false);
-//       }, 800);
-//     } catch (err) {
-//       setTimeout(() => {
-//         setMessages((prev) => [
-//           ...prev,
-//           {
-//             sender: "bot",
-//             text: "🙏 Forgive me, there seems to be an issue connecting to the monastery database. Please try again.",
-//           },
-//         ]);
-//         setIsTyping(false);
-//       }, 800);
-//       setCurrentMonastery(null);
-//     }
-
-//     setInput("");
-//   };
+    setInput("");
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
@@ -75,7 +81,8 @@ function Chatbot() {
         <div
           className="absolute inset-0"
           style={{
-            // backgroundImage: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
           }}
         />
       </div>
@@ -102,7 +109,6 @@ function Chatbot() {
       <div className="relative z-10 max-w-6xl mx-auto h-[calc(100vh-140px)] flex gap-6 p-6">
         {/* Chat Container */}
         <div className="flex-1 flex flex-col bg-slate-800/30 rounded-2xl backdrop-blur-sm border border-amber-800/20">
-          {/* Chat Messages */}
           <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
             {messages.map((msg, idx) => (
               <div
@@ -125,7 +131,6 @@ function Chatbot() {
               </div>
             ))}
 
-            {/* Typing Indicator */}
             {isTyping && (
               <div className="flex justify-start">
                 <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-slate-100 px-6 py-4 rounded-2xl rounded-bl-md border border-amber-800/20 shadow-lg">
@@ -156,12 +161,12 @@ function Chatbot() {
                   placeholder="Ask about monasteries, history, or Buddhist heritage..."
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter"}
+                  onKeyDown={(e) => e.key === "Enter" && handleSend()}
                   className="flex-1 bg-transparent text-amber-100 placeholder-amber-300/50 outline-none text-base font-light"
                   disabled={isTyping}
                 />
                 <button
-                  
+                  onClick={handleSend}
                   disabled={!input.trim() || isTyping}
                   className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 disabled:from-slate-600 disabled:to-slate-700 disabled:cursor-not-allowed text-white p-3 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl disabled:shadow-none"
                 >
@@ -170,15 +175,20 @@ function Chatbot() {
               </div>
             </div>
 
-            {/* Footer Text */}
             <p className="text-center text-amber-300/40 text-xs mt-3 font-light tracking-wide">
               Preserving the Sacred Heritage of Sikkim's Monasteries
             </p>
           </div>
         </div>
 
-        {/* Weather Widget Component */}
-        
+        {/* Weather Widget Placeholder (if needed) */}
+        {currentMonastery && (
+          <div className="w-80 bg-slate-800/30 rounded-2xl backdrop-blur-sm border border-amber-800/20 p-4 text-amber-100">
+            <h3 className="text-lg font-semibold mb-2">{currentMonastery.name}</h3>
+            <p>{currentMonastery.district}</p>
+            <p>Weather location: {currentMonastery.weatherLocation}</p>
+          </div>
+        )}
       </div>
 
       {/* Decorative Elements */}

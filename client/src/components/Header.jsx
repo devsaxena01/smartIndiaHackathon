@@ -35,6 +35,7 @@ const Header = () => {
           <li>
             <Link to="/booking" className="text-gray-300 hover:text-purple-400"> Booking </Link>
           </li>
+          <Link to="/chatbot" className=""><ChatIcon fontSize="large"/></Link>
         </ul>
 
         <button className="hidden md:block px-4 py-2 rounded-md bg-gray-900 text-sm text-gray-300 border border-gray-700 focus:outline-none focus:ring focus:ring-orange-500">

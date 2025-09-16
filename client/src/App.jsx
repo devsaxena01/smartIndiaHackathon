@@ -20,7 +20,7 @@ function App() {
             <Route path="/virtual-tours" element={<VirtualTour />} />
             <Route path="/interactive-map" element={<InteractiveMap />} />
             <Route path="/digital-archives" element={<DigitalArchives />} />
-            <Route path="/cultural-calendar" element={<CulturalCalender />} />
+            <Route path="/cultural-calender" element={<CulturalCalender />} />
             <Route path="/booking" element={<Booking />} />
           </Routes>
       </main>

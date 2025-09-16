@@ -1,45 +1,46 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const tours = [
   {
-    title: "Rumtek Monastery Panorama",
+    title: "Rumtek Monastery Panorama Monastery",
     desc: "Step into the heart of Sikkim’s largest monastery with a breathtaking 360° view of its main...",
-    img: "https://source.unsplash.com/400x250/?monastery,temple",
+    img: "./images/buddha.jpeg",
   },
   {
     title: "Pemayangtse Monastery Exploration",
     desc: "Discover the oldest monastery of Sikkim, exploring its exquisite murals, statues, and tranquil...",
-    img: "https://source.unsplash.com/400x250/?buddha,temple",
+    img: "./images/buddha.jpeg",
   },
   {
     title: "Tashiding Monastery Sacred Views",
     desc: "Experience the sacred ambience of Tashiding, revered as the Central Raised Sanctuary...",
-    img: "https://source.unsplash.com/400x250/?mountain,monastery",
+    img: "./images/buddha.jpeg",
   },
   {
     title: "Enchey Monastery Inner Sanctum",
     desc: "A digital walkthrough of the Enchey Monastery, showcasing its unique architecture and spiritual art...",
-    img: "https://source.unsplash.com/400x250/?buddhism,monastery",
+    img: "./images/buddha.jpeg",
   },
   {
     title: "Phodong Monastery Heritage",
     desc: "Explore the historical significance and artistic detail of Phodong, one of Sikkim’s major monasteries...",
-    img: "https://source.unsplash.com/400x250/?heritage,temple",
+    img: "./images/buddha.jpeg",
   },
   {
     title: "Janglum Monastery Grandeur",
     desc: "Immerse yourself in the serene beauty and modern grandeur of Janglum (Kabi) Monastery...",
-    img: "https://source.unsplash.com/400x250/?architecture,monastery",
+    img: "./images/buddha.jpeg",
   },
   {
     title: "Dubdi Monastery Ancient Roots",
     desc: "Journey to Dubdi, Sikkim’s first monastery, and experience its ancient roots and pristine natural setting...",
-    img: "https://source.unsplash.com/400x250/?ancient,monastery",
+    img: "./images/buddha.jpeg",
   },
   {
     title: "Rinchenpong Monastery Sunset",
     desc: "Witness the tranquil beauty of Rinchenpong Monastery, known for its scenic views and historical narratives...",
-    img: "https://source.unsplash.com/400x250/?sunset,monastery",
+    img: "./images/buddha.jpeg",
   },
 ];
 
@@ -66,6 +67,7 @@ const VirtualTour = () => {
       {/* Featured Virtual Tours */}
       <section className="py-12 px-6">
         <h3 className="text-2xl font-semibold text-center mb-10">Featured Virtual Tours</h3>
+        <input type=""></input>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {tours.map((tour, index) => (
             <div key={index} className="bg-gray-900 rounded-lg shadow-md overflow-hidden">
@@ -74,7 +76,7 @@ const VirtualTour = () => {
                 <h4 className="text-lg font-semibold mb-2">{tour.title}</h4>
                 <p className="text-gray-400 text-sm mb-4">{tour.desc}</p>
                 <button className="w-full bg-orange-600 hover:bg-orange-700 text-white py-2 rounded">
-                  Explore Tour
+                  <Link to="/interactive-map">Explore Tour</Link>
                 </button>
               </div>
             </div>

@@ -23,9 +23,9 @@ const Header = () => {
           <li>
             <Link to="/virtual-tours" className="text-gray-300 hover:text-purple-400"> Virtual Tours </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/interactive-map" className="text-gray-300 hover:text-purple-400"> Interactive Map </Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/digital-archives" className="text-gray-300 hover:text-purple-400"> Digital Archives </Link>
           </li>
@@ -65,12 +65,12 @@ const Header = () => {
             onClick={() => setIsOpen(false)}>
             Virtual Tours
           </Link>
-          <Link
+          {/* <Link
             to="/interactive-map"
             className="block text-sm text-gray-300 hover:text-purple-400"
             onClick={() => setIsOpen(false)} >
             Interactive Map
-          </Link>
+          </Link> */}
           <Link
             to="/digital-archives"
             className="block text-sm text-gray-300 hover:text-purple-400"

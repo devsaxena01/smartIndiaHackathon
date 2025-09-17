@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Send, Mountain, Home } from "lucide-react";
+import { Send, Mountain, Home, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom"; // ✅ Import Link for navigation
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([
@@ -71,22 +72,36 @@ const Chatbot = () => {
     <div className="min-h-screen h-[700px] bg-gradient-to-b from-gray-900 via-slate-800 to-slate-900 relative overflow-hidden">
       {/* Header */}
       <div className="relative z-10 border-b border-amber-800/30 bg-slate-800/50 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-center space-x-3">
-          <Home className="w-8 h-8 text-amber-400" />
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          {/* ✅ Back Button */}
+          <Link
+            to="/"
+            className="flex items-center space-x-2 text-amber-300 hover:text-amber-200 transition"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            <span className="text-sm font-medium">Back</span>
+          </Link>
+
+          {/* Title */}
           <div className="text-center">
             <h1 className="text-2xl font-bold text-amber-100 tracking-wide">
-              སིཀིམ་དགོན་པ་ཁག
+              LamaBot AI
             </h1>
-            <p className="text-amber-300/80 text-sm font-light tracking-widest">
+            <div className="flex items-center justify-center mt-2 space-x-2">
+        <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+        <span className="text-green-400 text-sm font-light">Online</span>
+      </div>
+            {/* <p className="text-amber-300/80 text-sm font-light tracking-widest">
               SIKKIM MONASTERIES HERITAGE PORTAL
-            </p>
+            </p> */}
           </div>
+
           <Mountain className="w-8 h-8 text-amber-400" />
         </div>
       </div>
 
       {/* Main Content Container */}
-      <div className="relative z-10 mx-auto h-[calc(100vh-60px)] flex gap-6 p-8">
+      <div className="relative z-10 mx-auto h-[calc(100vh-120px)] flex gap-6 p-8">
         {/* Chat Container */}
         <div className="flex-1 flex flex-col bg-gray-900 rounded-xl backdrop-blur-sm border border-amber-800/20">
           <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">

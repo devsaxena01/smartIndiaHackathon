@@ -32,7 +32,7 @@ const Header = () => {
             <Link to="/cultural-calender" className="text-gray-300 hover:text-purple-400"> Cultural Calender </Link>
           </li>
           <li>
-            <Link to="/booking" className="text-gray-300 hover:text-purple-400"> Booking </Link>
+            <Link to="/booking" className="text-gray-300 hover:text-purple-400"> Create Trip </Link>
           </li>
         </ul> 
 

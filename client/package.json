@@ -16,7 +16,7 @@
     "@mui/material": "^7.3.2",
     "@mui/styled-engine-sc": "^7.3.2",
     "axios": "^1.12.2",
-    "framer-motion": "^12.23.12",
+    "framer-motion": "^12.23.13",
     "lucide-react": "^0.544.0",
     "prop-types": "^15.8.1",
     "react": "^19.1.1",

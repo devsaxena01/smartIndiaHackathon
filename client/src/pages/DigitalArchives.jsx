@@ -1,13 +1,3 @@
-// import React from 'react'
-
-// const DigitalArchives = () => {
-//   return (
-//     <div>DigitalArchives</div>
-//   )
-// }
-
-// export default DigitalArchives
-
 import React, { useState } from "react";
 
 const DigitalArchives = () => {

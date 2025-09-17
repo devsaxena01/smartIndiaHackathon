@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { monasteryData } from './../apiCalls/monastery'
 
 const VirtualTour = () => {
   const [tours, setTours] = useState([]);
@@ -9,9 +10,8 @@ const VirtualTour = () => {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/v1/monasteries");
-        const data = await res.json();
-        setTours(data.data || []);
+        const data = await monasteryData();   // don't pass tours
+      setTours(data.data || []); 
       } catch (err) {
         console.error("Error fetching monasteries:", err);
       } finally {

@@ -8,6 +8,7 @@ import DigitalArchives from "./pages/DigitalArchives";
 import CulturalCalender from "./pages/CulturalCalender";
 import Booking from "./pages/Booking";
 import Chatbot from "./pages/Chatbot";
+import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/chatbot" element={<Chatbot />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/contact" element={<Contact/>}/>
       </Routes>
     </Router>
   );

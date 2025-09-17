@@ -4,10 +4,15 @@ import { GiMeditation, GiPrayer, GiMountainCave, GiBookAura } from "react-icons/
 import { MdFestival } from "react-icons/md";
 import { BsSunrise } from "react-icons/bs";
 import { Star, Mountain, BookOpen, Theater, User } from "lucide-react";
+import AncientMonasteries from "../components/AncientMonasteries";
+import Testimonials from "../components/Testimonials";
+import { Link, useNavigate } from "react-router-dom";
+import guide from "../../docs/Sikkim_pocket_guide.pdf"
 
-export default function SikkimMonasteryExperience() {
+const Home = () =>  {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [selectedMonastery, setSelectedMonastery] = useState(null);
+  const navigate = useNavigate();
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,144 +21,6 @@ export default function SikkimMonasteryExperience() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-   const testimonials = [
-    {
-      name: "Sarah Chen",
-      location: "Singapore",
-      image: "https://picsum.photos/100/100?random=10",
-      testimonial:
-        "The meditation sessions at Rumtek changed my perspective on life. The monks' wisdom and the mountain serenity created an unforgettable spiritual experience.",
-      rating: 5,
-      experience: "5-Day Retreat",
-    },
-    {
-      name: "Raj Patel",
-      location: "Mumbai, India",
-      image: "https://picsum.photos/100/100?random=11",
-      testimonial:
-        "Witnessing the Cham dance at Enchey was mesmerizing. The ancient traditions come alive in ways that photos and videos cannot capture.",
-      rating: 5,
-      experience: "Festival Tour",
-    },
-    {
-      name: "Emma Johnson",
-      location: "London, UK",
-      image: "https://picsum.photos/100/100?random=12",
-      testimonial:
-        "Tashiding's sacred energy is palpable. Standing there at sunrise, surrounded by prayer flags and mountain peaks, I felt truly connected to something greater.",
-      rating: 5,
-      experience: "Spiritual Journey",
-    },
-  ];
-  const itinerary = [
-  {
-    day: "Day 1",
-    title: "Arrival & Purification",
-    desc: "Begin with traditional blessing ceremonies and acclimatization to mountain energy",
-    time: "Morning",
-    icon: Star,
-  },
-  {
-    day: "Day 2",
-    title: "Ancient Wisdom",
-    desc: "Visit Pemayangtse and learn from senior monks about Tibetan Buddhist philosophy",
-    time: "Full Day",
-    icon: BookOpen,
-  },
-  {
-    day: "Day 3",
-    title: "Mountain Meditation",
-    desc: "Dawn meditation at Tashiding followed by sacred kora (circumambulation)",
-    time: "Early Morning",
-    icon: Mountain,
-  },
-  {
-    day: "Day 4",
-    title: "Festival Immersion",
-    desc: "Participate in traditional Cham dance at Enchey Monastery",
-    time: "Evening",
-    icon: Theater,
-  },
-  {
-    day: "Day 5",
-    title: "Inner Reflection",
-    desc: "Silent retreat and personal meditation at Rumtek with guidance from lamas",
-    time: "All Day",
-    icon: User,
-  },
-];
-  const monasteries = [
-    {
-      title: "Rumtek Monastery",
-      subtitle: "The Golden Dharmachakra",
-      img: "https://i.pinimg.com/736x/78/01/56/780156f050379440976c36844f4bf831.jpg",
-      desc: "The largest monastery in Sikkim and the seat of the 17th Karmapa. Experience the mesmerizing chants of monks and witness ancient Tibetan Buddhist rituals in this architectural marvel.",
-      founded: "1966",
-      altitude: "5,800 ft",
-      highlight: "Home to sacred Buddhist relics",
-      coordinates: { lat: 27.3389, lng: 88.5593 }
-    },
-    {
-      title: "Pemayangtse Monastery",
-      subtitle: "The Perfect Sublime Lotus",
-      img: "https://i.pinimg.com/736x/0d/1b/57/0d1b57388ff1d565caaa7d262e42b068.jpg",
-      desc: "One of the oldest and most important monasteries of Sikkim, offering breathtaking views of the Kangchenjunga range. Marvel at the intricate wood carvings and ancient murals.",
-      founded: "1705",
-      altitude: "6,840 ft",
-      highlight: "Spectacular Himalayan views",
-      coordinates: { lat: 27.2120, lng: 88.2090 }
-    },
-    {
-      title: "Enchey Monastery",
-      subtitle: "The Solitary Temple",
-      img: "https://i.pinimg.com/1200x/81/4b/24/814b2475bf6d6a3c3729d8d1ed194e4f.jpg",
-      desc: "Perched majestically above Gangtok, famous for its vibrant Cham dances. The monastery comes alive during festivals with masked monks performing ancient spiritual dances.",
-      founded: "1909",
-      altitude: "6,200 ft",
-      highlight: "Famous for Cham dance festivals",
-      coordinates: { lat: 27.3314, lng: 88.6138 }
-    },
-    {
-      title: "Tashiding Monastery",
-      subtitle: "The Devoted Central Glory",
-      img: "https://i.pinimg.com/1200x/45/ce/93/45ce93691aafd5ae247111e7827cba75.jpg",
-      desc: "Considered the most sacred monastery in Sikkim, built on a heart-shaped hill. Pilgrims believe that a glimpse of this monastery cleanses all sins.",
-      founded: "1641",
-      altitude: "4,600 ft",
-      highlight: "Most sacred site in Sikkim",
-      coordinates: { lat: 27.1833, lng: 88.2833 }
-    },
-    {
-      title: "Ralong Monastery",
-      subtitle: "The Sacred Valley Temple",
-      img: "https://i.pinimg.com/1200x/6b/fe/ad/6bfeada15983e4f29c0d024af912716f.jpg",
-      desc: "Known for its rich collection of thangkas and ancient manuscripts. The monastery's architecture reflects perfect harmony with the surrounding landscape.",
-      founded: "1768",
-      altitude: "5,500 ft",
-      highlight: "Ancient manuscript collection",
-      coordinates: { lat: 27.2442, lng: 88.3167 }
-    },
-    {
-      title: "Phodong Monastery",
-      subtitle: "The Hilltop Sanctuary",
-      img: "https://i.pinimg.com/736x/03/9c/48/039c48aa47d613ba826b2ec98bd889b6.jpg",
-      desc: "Famous for its annual Chaam festival where monks perform elaborate masked dances depicting Buddhist legends and teachings.",
-      founded: "1740",
-      altitude: "4,500 ft",
-      highlight: "Annual Chaam festival",
-      coordinates: { lat: 27.4167, lng: 88.6167 }
-    }
-  ];
-
-  const experiences = [
-  { icon: <GiMeditation />, title: "Meditation Sessions", desc: "Join monks in daily meditation practices" },
-  { icon: <MdFestival />, title: "Festival Participation", desc: "Experience colorful Cham dance festivals" },
-  { icon: <GiPrayer />, title: "Prayer Rituals", desc: "Participate in ancient Buddhist ceremonies" },
-  { icon: <GiMountainCave />, title: "Mountain Views", desc: "Witness stunning Himalayan panoramas" },
-  { icon: <GiBookAura />, title: "Buddhist Learning", desc: "Study ancient texts and philosophy" },
-  { icon: <BsSunrise />, title: "Sunrise Prayers", desc: "Experience dawn meditation sessions" }
-];
-
 
   return (
     <div className="bg-gray-900 text-white overflow-hidden">
@@ -223,9 +90,6 @@ export default function SikkimMonasteryExperience() {
         }
       `}</style>
 
-      {/* Floating Navigation */}
-
-      {/* Hero Video Section */}
      <section className="relative h-screen flex items-center justify-center overflow-hidden">
   <div className="absolute inset-0 z-0">
     <video
@@ -239,8 +103,7 @@ export default function SikkimMonasteryExperience() {
         // Fallback to image if video fails
         e.target.style.display = "none";
         e.target.nextElementSibling.style.display = "block";
-      }}
-    >
+      }}>
       <source src="/images/monastery_f_f.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
@@ -270,8 +133,7 @@ export default function SikkimMonasteryExperience() {
           }
         }}
         className="bg-black/50 backdrop-blur-sm text-white p-3 rounded-full hover:bg-black/70 transition-colors"
-        title="Play/Pause video"
-      >
+        title="Play/Pause video">
         ⏸️
       </button>
     </div>
@@ -285,8 +147,7 @@ export default function SikkimMonasteryExperience() {
   transition={{ duration: 1.2, ease: "easeOut" }}
   className="text-5xl md:text-8xl font-bold mb-6 
     bg-gradient-to-r from-white/60 via-green-200/50 to-sky-200/60 
-    bg-clip-text text-transparent backdrop-blur-[1px] drop-shadow-md"
->
+    bg-clip-text text-transparent backdrop-blur-[1px] drop-shadow-md">
   Sacred Monasteries
 </motion.h1>
 
@@ -302,33 +163,23 @@ export default function SikkimMonasteryExperience() {
   </motion.p>
 
   {/* Buttons */}
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 1, delay: 0.8 }}
-    className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-  >
-    <motion.button
-      whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.95 }}
+  <div className="flex flex-col sm:flex-row gap-4 justify-center items-center" >
+    <button
+     onClick={() => navigate("/virtual-tours")}
       className="bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 
         px-8 py-4 rounded-full text-lg font-medium text-white 
-        shadow-lg hover:shadow-emerald-500/40 transition"
-    >
+        shadow-lg hover:shadow-emerald-500/40 transition">
       Begin Your Journey
-    </motion.button>
-
-    <motion.button
-      whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.95 }}
+    </button>
+    <button
       className="border-2 border-white/70 px-8 py-4 rounded-full 
         text-lg font-medium text-white backdrop-blur-sm 
-        hover:bg-white/10 transition shadow-md"
-    >
-      Watch Stories
-    </motion.button>
-  </motion.div>
+        hover:bg-white/10 transition shadow-md">
+       <a href="#serenity">Watch Stories</a>
+    </button>
+  </div>
 </div>
+
   {/* Scroll Indicator */}
   <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 animate-bounce-slow">
     <div className="flex flex-col items-center">
@@ -340,195 +191,8 @@ export default function SikkimMonasteryExperience() {
   </div>
 </section>
 
-
-      {/* Featured Video Section */}
-
       {/* Monasteries Grid */}
-      <section id="monasteries" className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
-            Ancient Sanctuaries
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Each monastery tells a unique story of devotion, artistry, and spiritual enlightenment, nestled in the breathtaking landscapes of the Himalayas
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
-          {monasteries.map((monastery, i) => (
-            <div
-              key={i}
-              className="group cursor-pointer hover-scale"
-              onClick={() => setSelectedMonastery(monastery)}
-            >
-              <div className="bg-gray-800/50 backdrop-blur-lg rounded-3xl overflow-hidden border border-gray-700/50 hover:border-emerald-500/50 transition-all duration-300 hover-zoom">
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={monastery.img}
-                    alt={monastery.title}
-                    className="w-full h-full object-cover transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
-                  <div className="absolute top-4 right-4 bg-gray-900/80 backdrop-blur-sm px-3 py-1 rounded-full text-sm">
-                    Est. {monastery.founded}
-                  </div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-2xl font-bold text-white mb-1">{monastery.title}</h3>
-                    <p className="text-emerald-300 text-sm font-medium">{monastery.subtitle}</p>
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <p className="text-gray-300 mb-4 leading-relaxed">{monastery.desc}</p>
-
-                  <div className="flex items-center justify-between text-sm text-gray-400 mb-4">
-                    <span className="flex items-center">
-                      <span className="mr-2">🏔️</span>
-                      {monastery.altitude}
-                    </span>
-                    <span className="flex items-center">
-                      <span className="mr-2">⭐</span>
-                      <span className="truncate">{monastery.highlight}</span>
-                    </span>
-                  </div>
-
-                  <button className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 py-3 rounded-xl font-medium hover:shadow-lg transition-all duration-300 hover-scale">
-                    Explore Details
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Experiences Section */}
-<section
-  id="experiences"
-  className="relative py-28 px-6 md:px-12 bg-gradient-to-br from-gray-950 via-gray-900 to-gray-800"
->
-  <div className="max-w-7xl mx-auto relative z-10">
-    {/* Heading */}
-    <div className="text-center mb-20">
-      <h2 className="text-5xl md:text-6xl font-extrabold mb-6 
-        bg-gradient-to-r from-emerald-300 via-green-400 to-teal-300 
-        bg-clip-text text-transparent drop-shadow-lg">
-        Spiritual Experiences
-      </h2>
-      <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-        Immerse yourself in sacred traditions, meditative practices, and timeless Himalayan wisdom.
-      </p>
-    </div>
-
-    {/* Experience Cards */}
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-      {experiences.map((exp, i) => (
-        <div
-          key={i}
-          className="group relative bg-gray-800/40 backdrop-blur-xl 
-          border border-gray-700/40 rounded-3xl p-10 flex flex-col items-center 
-          text-center shadow-lg transition-all duration-500 hover:scale-105 
-          hover:border-emerald-400/60 hover:shadow-emerald-500/20"
-          style={{ animationDelay: `${i * 0.15}s` }}
-        >
-          {/* Icon Bubble */}
-          <div className="w-20 h-20 flex items-center justify-center 
-            rounded-full mb-6 text-4xl bg-gradient-to-br 
-            from-emerald-400/30 to-green-500/20 
-            group-hover:from-emerald-400 group-hover:to-green-500 
-            text-white shadow-md transition-all duration-500">
-            {exp.icon}
-          </div>
-
-          {/* Title */}
-          <h3 className="text-2xl font-semibold text-white mb-3 tracking-wide">
-            {exp.title}
-          </h3>
-
-          {/* Description */}
-          <p className="text-gray-400 text-base leading-relaxed">
-            {exp.desc}
-          </p>
-
-          {/* Hover Glow Line */}
-          <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-emerald-400 
-            group-hover:w-1/2 transition-all duration-500 rounded-full" />
-        </div>
-      ))}
-    </div>
-  </div>
-
-  {/* Background soft light effect */}
-  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.15),transparent_70%)] pointer-events-none"></div>
-</section>
-
-
-      {/* Journey Timeline */}
-      <section className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-      {/* Heading */}
-      <div className="text-center mb-20">
-        <motion.h2
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent"
-        >
-          Your Sacred Journey
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.7 }}
-          className="text-xl text-gray-400 max-w-3xl mx-auto"
-        >
-          Follow the path of enlightenment through a carefully crafted spiritual itinerary
-        </motion.p>
-      </div>
-
-      {/* Timeline */}
-      <div className="relative">
-        {/* Vertical Line */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></div>
-
-        {itinerary.map((step, i) => {
-          const Icon = step.icon;
-          return (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -80 : 80 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.2 }}
-              viewport={{ once: true }}
-              className={`flex items-center mb-20 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
-            >
-              {/* Card */}
-              <div className={`w-full md:w-5/12 ${i % 2 === 0 ? "md:text-right md:pr-10" : "md:pl-10"}`}>
-                <div className="bg-gray-900/70 backdrop-blur-md p-8 rounded-3xl border border-gray-700 hover:border-emerald-400 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/20">
-                  <div className={`flex items-center ${i % 2 === 0 ? "justify-end" : "justify-start"} mb-5`}>
-                    <div className="flex items-center space-x-3">
-                      <Icon className="w-8 h-8 text-emerald-400" />
-                      <div>
-                        <h3 className="text-2xl font-bold text-white">{step.title}</h3>
-                        <p className="text-emerald-300">{step.day} • {step.time}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-gray-300 leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-
-              {/* Connector Dot */}
-              <div className="w-2/12 flex justify-center">
-                <div className="w-7 h-7 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full border-4 border-gray-900 shadow-lg"></div>
-              </div>
-
-              <div className="w-full md:w-5/12"></div>
-            </motion.div>
-          );
-        })}
-      </div>
-    </section>
-  
+      <AncientMonasteries />
 
       {/* Interactive Map Section */}
       <section className="py-24 px-6 md:px-12 bg-gradient-to-br from-gray-800 to-gray-900">
@@ -544,32 +208,17 @@ export default function SikkimMonasteryExperience() {
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="bg-gray-800/50 backdrop-blur-lg p-8 rounded-3xl border border-gray-700/50">
-              <div className="aspect-square bg-gradient-to-br from-emerald-600 to-teal-600 rounded-2xl p-8 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-20">
-                  <svg viewBox="0 0 400 400" className="w-full h-full">
-                    <path d="M50,350 Q200,50 350,350" stroke="rgba(255,255,255,0.3)" strokeWidth="2" fill="none" strokeDasharray="5,5" />
-                    <path d="M100,300 Q200,100 300,300" stroke="rgba(255,255,255,0.3)" strokeWidth="2" fill="none" strokeDasharray="5,5" />
-                  </svg>
-                </div>
-
-                {monasteries.slice(0, 4).map((monastery, i) => (
-                  <div
-                    key={i}
-                    className="absolute w-4 h-4 bg-white rounded-full animate-ping"
-                    style={{
-                      left: `${20 + i * 20}%`,
-                      top: `${30 + (i % 2) * 40}%`,
-                      animationDelay: `${i * 0.5}s`
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-white rounded-full"></div>
-                  </div>
-                ))}
-
-                <div className="relative z-10 text-center text-white">
-                  <h3 className="text-3xl font-bold mb-4">Sikkim Monasteries</h3>
-                  <p className="text-white/80">Interactive monastery locations coming soon</p>
-                </div>
+              <div className="aspect-square bg-gradient-to-br from-emerald-600 to-teal-600 rounded-2xl relative overflow-hidden">
+                <iframe
+    title="Sikkim Monasteries Map"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d456280.37284637256!2d88.20!3d27.50!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6a598d58c21f7%3A0x4e7632a4f81e9f59!2sRumtek%20Monastery!5e0!3m2!1sen!2sin!4v1694958000000!5m2!1sen!2sin"
+    width="100%"
+    height="100%"
+    style={{ border: 0 }}
+    allowFullScreen=""
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+  ></iframe>
               </div>
             </div>
 
@@ -607,62 +256,10 @@ export default function SikkimMonasteryExperience() {
       </section>
 
       {/* Testimonials Section */}
-       <section className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-      <div className="text-center mb-16">
-        <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-          Pilgrims' Stories
-        </h2>
-        <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-          Hear from fellow travelers who found peace and enlightenment in
-          Sikkim's sacred spaces
-        </p>
-      </div>
+      {/* <Testimonials/> */}
 
-      <div className="grid md:grid-cols-3 gap-8">
-        {testimonials.map((t, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: i * 0.2 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.03, rotate: -1 }}
-            className="relative bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-lg p-8 rounded-3xl border border-gray-700/40 hover:border-emerald-400/60 shadow-lg transition-all duration-300"
-          >
-            <div className="flex items-center mb-6">
-              <img
-                src={t.image}
-                alt={t.name}
-                className="w-16 h-16 rounded-full mr-4 border-2 border-emerald-400/60"
-              />
-              <div>
-                <h4 className="text-lg font-bold text-white">{t.name}</h4>
-                <p className="text-emerald-300 text-sm">{t.location}</p>
-                <p className="text-gray-400 text-sm">{t.experience}</p>
-              </div>
-            </div>
-
-            <div className="flex mb-4">
-              {[...Array(t.rating)].map((_, j) => (
-                <Star
-                  key={j}
-                  className="w-5 h-5 text-yellow-400 fill-yellow-400"
-                />
-              ))}
-            </div>
-
-            <blockquote className="text-gray-300 italic leading-relaxed relative">
-              “{t.testimonial}”
-              <span className="absolute -top-4 -left-2 text-emerald-400 text-3xl opacity-30">
-                ❝
-              </span>
-            </blockquote>
-          </motion.div>
-        ))}
-      </div>
-    </section>
       {/* Photography Gallery */}
-      <section className="py-24 px-6 md:px-12 bg-gradient-to-br from-gray-900 to-black">
+      <section id="serenity" className="py-24 px-6 md:px-12 bg-gradient-to-br from-gray-900 to-black">
   <div className="max-w-7xl mx-auto">
     <div className="text-center mb-16">
       <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
@@ -691,14 +288,11 @@ export default function SikkimMonasteryExperience() {
       ].map((src, i) => (
         <div
           key={i}
-          className="relative overflow-hidden rounded-2xl hover-scale group cursor-pointer"
-          
-        >
+          className="relative overflow-hidden rounded-2xl hover-scale group cursor-pointer">
           <img
             src={src}
             alt={`Gallery ${i + 1}`}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-          />
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="absolute bottom-4 left-4 text-white">
               <p className="font-medium">Sacred Moment #{i + 1}</p>
@@ -709,11 +303,7 @@ export default function SikkimMonasteryExperience() {
     </div>
   </div>
 </section>
-
-
-      {/* Cultural Insights */}
       
-
       {/* CTA Section */}
 <section className="py-24 px-6 md:px-12 bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 backdrop-blur-lg">
   <div className="max-w-4xl mx-auto text-center">
@@ -726,71 +316,25 @@ export default function SikkimMonasteryExperience() {
         Let us guide you through a transformative spiritual experience.
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <button className="px-8 py-4 rounded-xl text-lg font-semibold bg-white/10 text-white border border-white/20 backdrop-blur-sm hover:bg-white/20 hover:shadow-xl hover:-translate-y-1 transition-all">
+        <button 
+        onClick={() => navigate("/booking")}
+        className="px-8 py-4 rounded-xl text-lg font-semibold bg-white/10 text-white border border-white/20 backdrop-blur-sm hover:bg-white/20 hover:shadow-xl hover:-translate-y-1 transition-all">
           Plan Your Pilgrimage
         </button>
-        <button className="px-8 py-4 rounded-xl text-lg font-semibold border border-white/30 text-white hover:bg-white/10 hover:shadow-lg hover:-translate-y-1 transition-all">
+        <a href={guide}
+        download="Sikkim_pocket_guide.pdf"
+        className="px-8 py-4 rounded-xl text-lg font-semibold border border-white/30 text-white hover:bg-white/10 hover:shadow-lg hover:-translate-y-1 transition-all">
           Download Guide
-        </button>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-
-
-
-
-
-      {/* Footer */}
-
-
       {/* Monastery Detail Modal */}
-      {selectedMonastery && (
-        <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeInUp"
-          onClick={() => setSelectedMonastery(null)}
-        >
-          <div
-            className="bg-gray-800 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-scaleIn"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="relative">
-              <img
-                src={selectedMonastery.img}
-                alt={selectedMonastery.title}
-                className="w-full h-64 object-cover rounded-t-3xl"
-              />
-              <button
-                onClick={() => setSelectedMonastery(null)}
-                className="absolute top-4 right-4 bg-gray-900/80 backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center text-white hover:bg-gray-800 transition-colors"
-              >
-                ✕
-              </button>
-            </div>
-            <div className="p-8">
-              <h3 className="text-3xl font-bold mb-2 text-white">{selectedMonastery.title}</h3>
-              <p className="text-emerald-300 mb-4 font-medium">{selectedMonastery.subtitle}</p>
-              <p className="text-gray-300 mb-6 leading-relaxed">{selectedMonastery.desc}</p>
-
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-gray-700/50 p-4 rounded-xl">
-                  <span className="text-gray-400 text-sm">Founded</span>
-                  <p className="text-white font-bold">{selectedMonastery.founded}</p>
-                </div>
-                <div className="bg-gray-700/50 p-4 rounded-xl">
-                  <span className="text-gray-400 text-sm">Altitude</span>
-                  <p className="text-white font-bold">{selectedMonastery.altitude}</p>
-                </div>
-              </div>
-
-              <button className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 py-4 rounded-xl font-medium text-lg hover-scale">
-                Book Visit
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      
     </div>
   );
 }
+
+export default Home

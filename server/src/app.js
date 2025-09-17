@@ -7,7 +7,7 @@ import monastryRouter from "./routes/monastry.route.js";
 const app = express();
 
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || "http://localhost:5173", // your frontend port
+  origin: ["https://monastery360-70f5.onrender.com" ,"http://localhost:5173"], // your frontend port
   credentials: true
 }));
 app.use(express.json({ limit: "16kb" }));

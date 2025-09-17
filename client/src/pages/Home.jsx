@@ -104,7 +104,7 @@ const Home = () =>  {
         e.target.style.display = "none";
         e.target.nextElementSibling.style.display = "block";
       }}>
-      <source src="/images/monastery_f_f.mp4" type="video/mp4" />
+      <source src="/videos/monastery_f_f.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
 

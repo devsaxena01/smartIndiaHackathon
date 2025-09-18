@@ -1,34 +1,44 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-//   const dispatch = useDispatch();
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
-    let response = null;
     try {
-      dispatch(showLoader());
-      response = await loginUser({ email, password });
-      dispatch(hideLoader());
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/users/login",
+        formData
+      );
+      console.log("Login Successful", response.data);
 
-      if (response.success) {
-        toast.success(response.message);
-        localStorage.setItem("token", response.token);
-        navigate("/");
-      } else {
-        toast.error(response.message);
-      }
+      localStorage.setItem("accessToken", response.data.data.accessToken);
+      localStorage.setItem("user", JSON.stringify(response.data.data.user));
+
+      navigate("/")
     } catch (error) {
-      dispatch(hideLoader());
-      toast.error(response?.message || "Something went wrong");
+      console.log("Error occurred", error);
+      setError(error.response?.data.message || "Login Failed. Check your username and password");
     }
   };
+
+  const { username, password } = formData;
 
   return (
     <div className="flex items-center justify-center min-h-screen 
@@ -44,20 +54,23 @@ const Login = () => {
         </h2>
         <p className="text-center text-gray-400 mb-6 text-xs sm:text-sm lg:text-base">
             Login to unlock lightning speed ⚡
-          </p>
+        </p>
+
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
         <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
           <div>
-            <label htmlFor="email" className="block text-xs sm:text-sm font-semibold text-gray-300 mb-1">
-              Email
+            <label htmlFor="username" className="block text-xs sm:text-sm font-semibold text-gray-300 mb-1">
+              Username
             </label>
             <input
-              type="email"
-              id="email"
+              type="text"
+              id="username"
+              name="username"
               autoComplete="off"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your username"
+              value={username}
+              onChange={handleChange}
               className="w-full pl-10 pr-3 py-2 sm:py-2.5 bg-black/40 border border-cyan-500/40 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 
                     placeholder-gray-500 text-sm sm:text-base"
             />
@@ -70,10 +83,11 @@ const Login = () => {
             <input
               type="password"
               id="password"
+              name="password"
               autoComplete="off"
               placeholder="Enter your password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handleChange}
               className="w-full pl-10 pr-3 py-2 sm:py-2.5 bg-black/40 border border-cyan-500/40 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 
                     placeholder-gray-500 text-sm sm:text-base"
             />
@@ -101,4 +115,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login

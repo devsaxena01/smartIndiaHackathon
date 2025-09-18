@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon src/index.js"
   },
-  "author": "Mayank Rouniyar",
+  "author": "Abhay Pratap Singh and Mayank Rouniyar",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^6.0.0",

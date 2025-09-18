@@ -16,7 +16,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Layout wraps all normal pages */}
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/virtual-tours" element={<VirtualTour />} />
@@ -26,7 +25,6 @@ function App() {
           <Route path="/booking" element={<Booking />} />
         </Route>
 
-        {/* Chatbot page (without Header & Footer) */}
         <Route path="/chatbot" element={<Chatbot />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

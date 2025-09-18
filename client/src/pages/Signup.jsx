@@ -62,7 +62,6 @@ const Signup = () => {
 
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
             
-            {/* Username */}
             <div>
               <label htmlFor="username" className="block text-xs sm:text-sm font-semibold text-gray-300 mb-1">
                 Username
@@ -83,7 +82,6 @@ const Signup = () => {
               </div>
             </div>
 
-            {/* Full Name */}
             <div>
               <label htmlFor="fullName" className="block text-xs sm:text-sm font-semibold text-gray-300 mb-1">
                 Full Name
@@ -104,7 +102,6 @@ const Signup = () => {
               </div>
             </div>
 
-            {/* Email */}
             <div>
               <label htmlFor="email" className="block text-xs sm:text-sm font-semibold text-gray-300 mb-1">
                 Email
@@ -125,7 +122,6 @@ const Signup = () => {
               </div>
             </div>
 
-            {/* Password */}
             <div>
               <label htmlFor="password" className="block text-xs sm:text-sm font-semibold text-gray-300 mb-1">
                 Password
@@ -153,7 +149,7 @@ const Signup = () => {
                 active:scale-95 transition transform  
                 text-sm sm:text-base"
             >
-              ⚡ Sign Up
+               Sign Up
             </button>
           </form>
 

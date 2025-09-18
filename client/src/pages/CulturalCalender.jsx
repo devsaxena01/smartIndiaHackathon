@@ -60,7 +60,7 @@ const CulturalCalender = () => {
 
   return (
     <div className="bg-black text-white font-sans min-h-screen">
-      {/* Navbar */}
+  
       {/* <nav className="flex justify-between items-center px-8 py-4 bg-black shadow-md">
         <div className="text-2xl font-bold text-orange-500">✺ Monastery360</div>
         <ul className="hidden md:flex space-x-6 text-gray-300">
@@ -132,7 +132,6 @@ const CulturalCalender = () => {
         />
       </div>
 
-      {/* Featured Events */}
       <div className="px-8 mt-10">
         <h2 className="text-2xl font-bold mb-6">Featured Events</h2>
 
@@ -153,9 +152,9 @@ const CulturalCalender = () => {
                     {event.title}
                   </h3>
                   <p className="text-sm text-gray-400 mt-2">
-                    📅 {event.date} <br />
-                    ⏰ {event.time} <br />
-                    📍 {event.monastery}
+                     {event.date} <br />
+                     {event.time} <br />
+                     {event.monastery}
                   </p>
                   <p className="mt-4 text-gray-300">{event.description}</p>
                 </div>
@@ -173,7 +172,6 @@ const CulturalCalender = () => {
         </div>
       </div>
 
-      {/* Footer */}
       {/* <footer className="bg-black text-gray-400 py-8 px-8 mt-10">
         <div className="flex justify-between">
           <div>

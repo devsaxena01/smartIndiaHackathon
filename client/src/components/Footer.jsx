@@ -16,7 +16,7 @@ const Footer = () => {
     <footer className="bg-black text-gray-400 py-12 px-6">
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center md:text-left">
         
-        {/* Brand */}
+        {/* logo and website name */}
         <div>
           <h3 className="text-xl font-bold text-orange-500">✺ Monastery360</h3>
           <p className="mt-3 text-sm">
@@ -42,7 +42,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Engage */}
+        {/* engage */}
         <div>
           <h4 className="text-white font-semibold mb-3">Engage</h4>
           <ul className="space-y-2 text-sm">
@@ -52,7 +52,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* About */}
+        {/* about*/}
         <div>
           <h4 className="text-white font-semibold mb-3">About</h4>
           <ul className="space-y-2 text-sm">
@@ -67,7 +67,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Bar */}
+      {/*bottom Bar */}
       <div className="text-center text-xs sm:text-sm text-gray-500 mt-8 border-t border-gray-800 pt-6">
         © 2025 Monastery360 | Preserving Culture with Technology
       </div>

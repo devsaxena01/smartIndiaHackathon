@@ -8,13 +8,12 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  // Check login status on mount
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     setIsLoggedIn(!!token);
   }, []);
 
-  // Logout handler
+  // logout popup
   const handleLogout = () => {
     const confirmed = window.confirm("Are you sure you want to logout?");
   if (confirmed) {
@@ -27,12 +26,9 @@ const Header = () => {
   return (
     <header className="bg-gray-900 text-white font-sans sticky top-0 z-50 shadow-md">
       <nav className="flex justify-between items-center px-6 py-4 shadow-md ">
-        {/* Logo */}
         <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-500 to-teal-400 animate-pulse">
           ✺ Monastery360
         </div>
-
-        {/* Desktop Links */}
         <ul className="hidden md:flex space-x-8 font-medium ">
           <li>
             <Link to="/" className="text-gray-300 hover:text-purple-400">Home</Link>
@@ -52,7 +48,6 @@ const Header = () => {
           <Link to="/chatbot" className="text-gray-300 hover:text-purple-400">LamaBot AI 🤖</Link>
         </ul>
 
-        {/* Conditional Login/Logout Button */}
         {isLoggedIn ? (
           <button
             onClick={handleLogout}
@@ -66,7 +61,7 @@ const Header = () => {
           </button>
         )}
 
-        {/* Mobile Menu Button */}
+        {/* mobile menu */}
         <button
           className="md:hidden text-orange-500 animate-slide-down"
           onClick={() => setIsOpen(!isOpen)}
@@ -75,7 +70,7 @@ const Header = () => {
         </button>
       </nav>
 
-      {/* Mobile Dropdown */}
+      {/* mobile dropdown */}
       {isOpen && (
         <div className="md:hidden bg-black border-t border-gray-700 px-6 py-4 space-y-4">
           <Link

@@ -69,11 +69,10 @@ const DigitalArchives = () => {
   return (
     <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white font-sans min-h-screen">
       <div className="flex p-6 gap-8">
-        {/* Sidebar Filters */}
+        {/* sidebar filters */}
         {/* ... (your sidebar code remains unchanged, just make sure it uses filters + handleChange) */}
       </div>
 
-      {/* Archive Grid */}
       <div className="flex-1">
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
           {filteredArchives.map((item, index) => (
@@ -95,7 +94,6 @@ const DigitalArchives = () => {
         )}
       </div>
 
-      {/* Modal */}
       {selectedItem && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center">
           <div className="bg-gray-900 rounded-xl p-6 max-w-3xl w-full">

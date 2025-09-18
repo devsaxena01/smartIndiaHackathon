@@ -187,7 +187,7 @@ const archives = [
 ];
 const seedArchives = async () => {
   try {
-    await Archives.deleteMany(); // optional: clear old data
+    await Archives.deleteMany(); // clearing all data first
     const result = await Archives.insertMany(archives);
     console.log("Archives seeded successfully:", result);
   } catch (error) {

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Send, Mountain, Home, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom"; // ✅ Import Link for navigation
+import { Link } from "react-router-dom"; 
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([
@@ -14,10 +14,10 @@ const Chatbot = () => {
   const [currentMonastery, setCurrentMonastery] = useState(null);
   const chatEndRef = useRef(null);
 
-  // ✅ Auto scroll to bottom when messages update
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  //Auto scroll to bottom when messages update
+  // useEffect(() => {
+  //   chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  // }, [messages]);
 
   // Handle sending message
   const handleSend = async () => {
@@ -70,10 +70,9 @@ const Chatbot = () => {
 
   return (
     <div className="min-h-screen h-[700px] bg-gradient-to-b from-gray-900 via-slate-800 to-slate-900 relative overflow-hidden">
-      {/* Header */}
+
       <div className="relative z-10 border-b border-amber-800/30 bg-slate-800/50 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          {/* ✅ Back Button */}
           <Link
             to="/"
             className="flex items-center space-x-2 text-amber-300 hover:text-amber-200 transition"
@@ -82,7 +81,7 @@ const Chatbot = () => {
             <span className="text-sm font-medium">Back</span>
           </Link>
 
-          {/* Title */}
+          {/* title line */}
           <div className="text-center">
             <h1 className="text-2xl font-bold text-amber-100 tracking-wide">
               LamaBot AI
@@ -100,9 +99,7 @@ const Chatbot = () => {
         </div>
       </div>
 
-      {/* Main Content Container */}
       <div className="relative z-10 mx-auto h-[calc(100vh-120px)] flex gap-6 p-8">
-        {/* Chat Container */}
         <div className="flex-1 flex flex-col bg-gray-900 rounded-xl backdrop-blur-sm border border-amber-800/20">
           <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
             {messages.map((msg, idx) => (
@@ -144,11 +141,9 @@ const Chatbot = () => {
               </div>
             )}
 
-            {/* ✅ Keeps scroll always at bottom */}
             <div ref={chatEndRef} />
           </div>
 
-          {/* Input Area */}
           <div className="px-6 pb-6">
             <div className="bg-slate-800/80 backdrop-blur-sm border border-amber-800/30 rounded-2xl p-4 shadow-2xl">
               <div className="flex space-x-3">

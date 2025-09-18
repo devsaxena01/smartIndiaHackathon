@@ -3,10 +3,10 @@ import { fetchAllMonastry, fetchMonasteryById } from "../controllers/monastry.co
 
 const router = Router();
 
-// GET /api/v1/monasteries → fetch all monasteries
+//fetching all monasteries
 router.get("/", fetchAllMonastry);
 
-// GET /api/v1/monasteries/:id → fetch single monastery by ID
+//fetching single monastery by ID
 router.get("/:id", fetchMonasteryById);
 
 export default router;

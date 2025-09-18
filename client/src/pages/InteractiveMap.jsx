@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const InteractiveMap = () => {
-  const { id } = useParams(); // get monastery ID from URL
+  const { id } = useParams(); // get monastery ID from url
   const [monastery, setMonastery] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const InteractiveMap = () => {
         </button>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Map / Panoramic Section */}
+          {/* 360 degree panoramic Section */}
           <div className="lg:w-2/3 bg-white rounded-xl shadow-md overflow-hidden h-full">
             {monastery.panoramicImage ? (
               <iframe
@@ -54,7 +54,7 @@ const InteractiveMap = () => {
             )}
           </div>
 
-          {/* Monastery Info */}
+          {/* monastry inforation */}
           <div className="lg:w-1/3 bg-white rounded-xl shadow-md overflow-hidden h-full p-6">
             <img
               src={monastery.image?.[0] || "./images/buddha.jpeg"}

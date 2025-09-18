@@ -7,16 +7,14 @@ const Booking = () => {
   return (
     <div className="min-h-screen bg-black text-white">
 
-      {/* Main Container */}
       <div className="max-w-7xl mx-auto py-10 grid grid-cols-1 lg:grid-cols-3 gap-8 px-6">
-        {/* Left Form */}
         <div className="bg-gray-900 p-6 rounded-lg shadow-md col-span-2">
           <h2 className="text-2xl font-semibold mb-6">Choose Your Experience</h2>
           <p className="text-gray-400 mb-4">
             Select your preferred tour, event, or retreat and provide your details.
           </p>
 
-          {/* Experience Type */}
+          {/* experiance */}
           <div className="mb-6">
             <h3 className="text-lg font-semibold mb-2">Select Experience Type</h3>
             <div className="space-y-2">
@@ -34,7 +32,6 @@ const Booking = () => {
             </div>
           </div>
 
-          {/* Select Tour/Event */}
           <div className="mb-6">
             <h3 className="text-lg font-semibold mb-2">Select Tour/Event</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -54,7 +51,7 @@ const Booking = () => {
             />
           </div>
 
-          {/* Your Details */}
+          {/*details */}
           <div className="mb-6">
             <h3 className="text-lg font-semibold mb-2">Your Details</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -89,7 +86,7 @@ const Booking = () => {
             />
           </div>
 
-          {/* Optional Services */}
+          {/* optional*/}
           <div>
             <h3 className="text-lg font-semibold mb-2">Optional Services</h3>
             <label className="flex items-center space-x-2 mb-3">
@@ -102,9 +99,8 @@ const Booking = () => {
           </div>
         </div>
 
-        {/* Right Section */}
+
         <div className="space-y-6">
-          {/* Booking Summary */}
           <div className="bg-gray-900 p-6 rounded-lg shadow-md">
             <h3 className="text-xl font-semibold mb-4">Booking Summary</h3>
             <ul className="space-y-2 text-gray-300">
@@ -131,7 +127,7 @@ const Booking = () => {
             </ul>
           </div>
 
-          {/* Payment Details */}
+          {/* payment details */}
           <div className="bg-gray-900 p-6 rounded-lg shadow-md">
             <h3 className="text-xl font-semibold mb-4">Payment Details</h3>
             <div className="space-y-2 mb-4">
@@ -148,7 +144,6 @@ const Booking = () => {
               ))}
             </div>
 
-            {/* Card Info */}
             {paymentMethod === "Credit Card" && (
               <div className="space-y-3">
                 <input

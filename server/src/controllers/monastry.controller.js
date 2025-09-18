@@ -16,7 +16,7 @@ const fetchAllMonastry = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, monasteries, "Monasteries fetched successfully"));
 });
 
-// Fetch single monastery by ID
+// getting single monastery from id
 const fetchMonasteryById = asyncHandler(async (req, res) => {
   const { id } = req.params;
 

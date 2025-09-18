@@ -100,7 +100,7 @@ const Home = () =>  {
       className="w-full h-full object-cover"
       poster="https://picsum.photos/1920/1080?random=7"
       onError={(e) => {
-        // Fallback to image if video fails
+        //image if video fails
         e.target.style.display = "none";
         e.target.nextElementSibling.style.display = "block";
       }}>
@@ -116,27 +116,8 @@ const Home = () =>  {
       style={{ display: "none" }}
     />
 
-    {/* Overlay */}
+    {/* black effect on the front page */}
     <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/70"></div>
-
-    {/* Video Controls Overlay */}
-    <div className="absolute bottom-20 right-8 z-20">
-      <button
-        onClick={(e) => {
-          const video = e.target.closest("section").querySelector("video");
-          if (video.paused) {
-            video.play();
-            e.target.innerHTML = "⏸️";
-          } else {
-            video.pause();
-            e.target.innerHTML = "▶️";
-          }
-        }}
-        className="bg-black/50 backdrop-blur-sm text-white p-3 rounded-full hover:bg-black/70 transition-colors"
-        title="Play/Pause video">
-        ⏸️
-      </button>
-    </div>
   </div>
 
   <div className="relative z-10 text-center max-w-5xl px-6">
@@ -151,7 +132,6 @@ const Home = () =>  {
   Sacred Monasteries
 </motion.h1>
 
-  {/* Subtitle */}
   <motion.p
     initial={{ opacity: 0, y: 30 }}
     animate={{ opacity: 1, y: 0 }}
@@ -162,7 +142,6 @@ const Home = () =>  {
     centuries of Buddhist wisdom echo through mountain valleys
   </motion.p>
 
-  {/* Buttons */}
   <div className="flex flex-col sm:flex-row gap-4 justify-center items-center" >
     <button
      onClick={() => navigate("/virtual-tours")}
@@ -180,7 +159,7 @@ const Home = () =>  {
   </div>
 </div>
 
-  {/* Scroll Indicator */}
+  {/* scroll indicator */}
   <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 animate-bounce-slow">
     <div className="flex flex-col items-center">
       <span className="text-sm mb-2">Scroll to explore</span>
@@ -194,7 +173,7 @@ const Home = () =>  {
       {/* Monasteries Grid */}
       <AncientMonasteries />
 
-      {/* Interactive Map Section */}
+      {/* interactive map section */}
       <section className="py-24 px-6 md:px-12 bg-gradient-to-br from-gray-800 to-gray-900">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -304,7 +283,6 @@ const Home = () =>  {
   </div>
 </section>
       
-      {/* CTA Section */}
 <section className="py-24 px-6 md:px-12 bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 backdrop-blur-lg">
   <div className="max-w-4xl mx-auto text-center">
     <div className="bg-gray-900/60 backdrop-blur-xl rounded-3xl p-10 border border-gray-700/40 shadow-2xl">
@@ -331,7 +309,6 @@ const Home = () =>  {
   </div>
 </section>
 
-      {/* Monastery Detail Modal */}
       
     </div>
   );

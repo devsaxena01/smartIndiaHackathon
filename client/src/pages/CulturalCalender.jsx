@@ -1,225 +1,271 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { ChevronLeft, ChevronRight, MapPin, Clock, Calendar } from 'lucide-react';
 
-const CulturalCalender = () => {
-  const [filters, setFilters] = useState({
-    eventType: "",
-    monastery: "",
-    keyword: "",
-  });
+const CulturalCalendar = () => {
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
-  const events = [
-    {
-      title: "Pang Lhabsol Festival",
-      date: "August 20, 2025",
-      time: "All Day",
-      monastery: "Tashiding Monastery, West Sikkim",
-      description:
-        "A unique festival dedicated to Mount Khangchendzonga, the guardian deity of Sikkim. Witness the spectacular 'Warrior Dance’.",
-      type: "Festival",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Pang_Lhabsol.jpg/640px-Pang_Lhabsol.jpg",
+  // Sample events data - you can replace with your actual data
+  const events = {
+    '2025-09-11': {
+      title: 'Pang Lhabsol Festival',
+      location: 'Pemayangtse Monastery',
+      time: 'Clean Dat 1inme',
+      image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      description: 'Experience the magnificent Pang Lhabsol Festival at Pemayangtse Monastery. This sacred celebration honors the guardian deity of Sikkim with traditional mask dances, ceremonial rituals, and vibrant cultural performances. Witness monks in elaborate costumes performing ancient dances that tell stories of good triumphing over evil.',
+      type: 'festival'
     },
-    {
-      title: "Losar (Tibetan New Year)",
-      date: "February 26, 2025",
-      time: "All Day",
-      monastery: "Rumtek Monastery, East Sikkim",
-      description:
-        "A grand celebration marking the Tibetan New Year with traditional dances, rituals, and offerings.",
-      type: "Festival",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Losar_celebration.jpg/640px-Losar_celebration.jpg",
+    '2025-09-15': {
+      title: 'Buddha Purnima Celebration',
+      location: 'Rumtek Monastery',
+      time: '6:00 AM - 8:00 PM',
+      image: 'https://images.unsplash.com/photo-1604608672516-f1a1c0db7f63?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      description: 'Join the sacred Buddha Purnima celebration commemorating the birth, enlightenment, and death of Buddha. The monastery will be illuminated with thousands of butter lamps, and special prayers will be conducted throughout the day.',
+      type: 'ritual'
     },
-    {
-      title: "Cham Dance Ritual",
-      date: "December 10, 2025",
-      time: "Morning",
-      monastery: "Phodong Monastery, North Sikkim",
-      description:
-        "Sacred masked dance performed by monks to dispel negative energies and invite blessings.",
-      type: "Ritual",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Cham_dance.jpg/640px-Cham_dance.jpg",
+    '2025-09-22': {
+      title: 'Meditation Workshop',
+      location: 'Enchey Monastery',
+      time: '9:00 AM - 4:00 PM',
+      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      description: 'Learn traditional Tibetan meditation techniques in the serene environment of Enchey Monastery. This intensive workshop includes guided meditation sessions, breathing exercises, and teachings on Buddhist philosophy.',
+      type: 'workshop'
     },
-  ];
-
-  const handleChange = (e) => {
-    setFilters({ ...filters, [e.target.name]: e.target.value });
+    '2025-09-28': {
+      title: 'Losar Preparation Ritual',
+      location: 'Tashiding Monastery',
+      time: '7:00 AM - 12:00 PM',
+      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+      description: 'Participate in the traditional preparation rituals for Losar, the Tibetan New Year. Watch as monks prepare ritual items, create intricate sand mandalas, and conduct purification ceremonies.',
+      type: 'special'
+    }
   };
 
-  const filteredEvents = events.filter((event) => {
-    return (
-      (filters.eventType === "" ||
-        event.type.toLowerCase().includes(filters.eventType.toLowerCase())) &&
-      (filters.monastery === "" ||
-        event.monastery.toLowerCase().includes(filters.monastery.toLowerCase())) &&
-      (filters.keyword === "" ||
-        event.title.toLowerCase().includes(filters.keyword.toLowerCase()))
-    );
-  });
+  const getEventTypeColor = (type) => {
+    switch (type) {
+      case 'festival': return 'bg-red-600';
+      case 'ritual': return 'bg-orange-500';
+      case 'workshop': return 'bg-blue-500';
+      case 'special': return 'bg-purple-600';
+      default: return 'bg-gray-500';
+    }
+  };
+
+  const getDaysInMonth = (date) => {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+  };
+
+  const getFirstDayOfMonth = (date) => {
+    return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+  };
+
+  const formatDateKey = (year, month, day) => {
+    return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  };
+
+  const navigateMonth = (direction) => {
+    setCurrentDate(prevDate => {
+      const newDate = new Date(prevDate);
+      newDate.setMonth(prevDate.getMonth() + direction);
+      return newDate;
+    });
+    setSelectedDate(null);
+    setSelectedEvent(null);
+  };
+
+  const selectDate = (day) => {
+    const dateKey = formatDateKey(currentDate.getFullYear(), currentDate.getMonth(), day);
+    setSelectedDate(day);
+    if (events[dateKey]) {
+      setSelectedEvent(events[dateKey]);
+    } else {
+      setSelectedEvent(null);
+    }
+  };
+
+  const renderCalendarDays = () => {
+    const daysInMonth = getDaysInMonth(currentDate);
+    const firstDayOfMonth = getFirstDayOfMonth(currentDate);
+    const days = [];
+
+    // Empty cells for days before the first day of the month
+    for (let i = 0; i < firstDayOfMonth; i++) {
+      days.push(<div key={`empty-${i}`} className="h-12"></div>);
+    }
+
+    // Days of the month
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dateKey = formatDateKey(currentDate.getFullYear(), currentDate.getMonth(), day);
+      const hasEvent = events[dateKey];
+      const isSelected = selectedDate === day;
+
+      days.push(
+        <div
+          key={day}
+          onClick={() => selectDate(day)}
+          className={`h-12 flex items-center justify-center cursor-pointer relative transition-all duration-200 hover:bg-slate-700/50 rounded-lg ${
+            isSelected ? 'bg-orange-500 text-white' : 'text-slate-300'
+          }`}
+        >
+          <span className="text-sm font-medium">{day}</span>
+          {hasEvent && (
+            <div className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 rounded-full ${getEventTypeColor(hasEvent.type)}`}></div>
+          )}
+        </div>
+      );
+    }
+
+    return days;
+  };
+
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   return (
-    <div className="bg-black text-white font-sans min-h-screen">
-  
-      {/* <nav className="flex justify-between items-center px-8 py-4 bg-black shadow-md">
-        <div className="text-2xl font-bold text-orange-500">✺ Monastery360</div>
-        <ul className="hidden md:flex space-x-6 text-gray-300">
-          <li className="hover:text-orange-500 cursor-pointer">Home</li>
-          <li className="hover:text-orange-500 cursor-pointer">Virtual Tours</li>
-          <li className="hover:text-orange-500 cursor-pointer">Interactive Map</li>
-          <li className="hover:text-orange-500 cursor-pointer">Digital Archives</li>
-          <li className="text-orange-500 cursor-pointer">Cultural Calendar</li>
-          <li className="hover:text-orange-500 cursor-pointer">Booking</li>
-        </ul>
-        <input
-          type="text"
-          placeholder="Search monasteries, events, or archives..."
-          className="px-3 py-2 rounded bg-gray-800 text-white text-sm"
-        />
-      </nav> */}
-
-      {/* Hero Section */}
-      <div
-        className="h-80 bg-cover bg-center flex items-center justify-center text-center"
-        style={{
-          backgroundImage:
-            "url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Monks_Sikkim.jpg/1280px-Monks_Sikkim.jpg')",
-        }}
-      >
-        <div className="bg-black bg-opacity-50 p-6 rounded">
-          <h1 className="text-4xl font-bold">Sikkim's Cultural Calendar</h1>
-          <p className="mt-3 text-gray-300 max-w-2xl">
-            Discover vibrant festivals, serene rituals, and enriching workshops
-            hosted across Sikkim’s historic monasteries. Plan your immersive
-            journey into our unique heritage.
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900" style={{
+      backgroundImage: "linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')",
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed'
+    }}>
+      <div className="container mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center mb-4">
+            <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-red-600 rounded-lg flex items-center justify-center mr-3">
+              <Calendar className="w-5 h-5 text-white" />
+            </div>
+            <h1 className="text-4xl font-bold text-white">Sacred Sikkim</h1>
+          </div>
+          <h2 className="text-2xl text-slate-300 mb-2">Cultural Calendar</h2>
+          <p className="text-slate-400 max-w-2xl mx-auto">
+            Embark on an immersive journey through ancient monasteries and vibrant culture of Sikkim. 
+            Explore sacred festivals, meditation workshops, and spiritual celebrations.
           </p>
         </div>
-      </div>
 
-      {/* Filters */}
-      <div className="flex items-center space-x-4 bg-gray-900 p-4 rounded mx-8 mt-6">
-        <select
-          name="eventType"
-          value={filters.eventType}
-          onChange={handleChange}
-          className="px-3 py-2 rounded bg-gray-800 text-white text-sm"
-        >
-          <option value="">All Event Types</option>
-          <option value="Festival">Festival</option>
-          <option value="Ritual">Ritual</option>
-          <option value="Workshop">Workshop</option>
-        </select>
+        <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {/* Calendar Section */}
+          <div className="lg:col-span-2">
+            <div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50">
+              {/* Calendar Header */}
+              <div className="flex items-center justify-between mb-6">
+                <button
+                  onClick={() => navigateMonth(-1)}
+                  className="p-2 hover:bg-slate-700/50 rounded-lg transition-colors"
+                >
+                  <ChevronLeft className="w-5 h-5 text-slate-300" />
+                </button>
+                <h3 className="text-xl font-semibold text-white">
+                  {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
+                </h3>
+                <button
+                  onClick={() => navigateMonth(1)}
+                  className="p-2 hover:bg-slate-700/50 rounded-lg transition-colors"
+                >
+                  <ChevronRight className="w-5 h-5 text-slate-300" />
+                </button>
+              </div>
 
-        <select
-          name="monastery"
-          value={filters.monastery}
-          onChange={handleChange}
-          className="px-3 py-2 rounded bg-gray-800 text-white text-sm"
-        >
-          <option value="">All Monasteries</option>
-          <option value="Rumtek Monastery">Rumtek Monastery</option>
-          <option value="Tashiding Monastery">Tashiding Monastery</option>
-          <option value="Phodong Monastery">Phodong Monastery</option>
-        </select>
-
-        <input
-          type="text"
-          name="keyword"
-          placeholder="Search for events..."
-          value={filters.keyword}
-          onChange={handleChange}
-          className="flex-grow px-3 py-2 rounded bg-gray-800 text-white text-sm"
-        />
-      </div>
-
-      <div className="px-8 mt-10">
-        <h2 className="text-2xl font-bold mb-6">Featured Events</h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {filteredEvents.map((event, index) => (
-            <div
-              key={index}
-              className="flex flex-col md:flex-row bg-gray-900 rounded-lg overflow-hidden shadow hover:shadow-lg transition"
-            >
-              <img
-                src={event.image}
-                alt={event.title}
-                className="w-full md:w-1/2 h-60 object-cover"
-              />
-              <div className="p-6 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-xl font-bold text-orange-400">
-                    {event.title}
-                  </h3>
-                  <p className="text-sm text-gray-400 mt-2">
-                     {event.date} <br />
-                     {event.time} <br />
-                     {event.monastery}
-                  </p>
-                  <p className="mt-4 text-gray-300">{event.description}</p>
+              {/* Legend */}
+              <div className="flex flex-wrap items-center gap-4 mb-6 text-xs">
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-red-600 rounded-full mr-2"></div>
+                  <span className="text-slate-300">Festivals</span>
                 </div>
-                <div className="mt-4 flex space-x-3">
-                  <button className="px-4 py-2 bg-gray-700 text-white rounded">
-                    Learn More
-                  </button>
-                  <button className="px-4 py-2 bg-orange-500 text-white rounded font-bold">
-                    Book Now
-                  </button>
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-orange-500 rounded-full mr-2"></div>
+                  <span className="text-slate-300">Rituals</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                  <span className="text-slate-300">Workshops</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-purple-600 rounded-full mr-2"></div>
+                  <span className="text-slate-300">Special Events</span>
                 </div>
               </div>
+
+              {/* Week Days */}
+              <div className="grid grid-cols-7 mb-4">
+                {weekDays.map(day => (
+                  <div key={day} className="h-10 flex items-center justify-center">
+                    <span className="text-sm font-medium text-slate-400">{day}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Calendar Days */}
+              <div className="grid grid-cols-7 gap-1">
+                {renderCalendarDays()}
+              </div>
             </div>
-          ))}
+          </div>
+
+          {/* Event Details Section */}
+          <div className="lg:col-span-1">
+            <div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 sticky top-8">
+              {selectedEvent ? (
+                <div>
+                  <div className="mb-6">
+                    <img
+                      src={selectedEvent.image}
+                      alt={selectedEvent.title}
+                      className="w-full h-48 object-cover rounded-xl"
+                    />
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-white mb-4">
+                    {selectedEvent.title}
+                  </h3>
+                  
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center text-slate-300">
+                      <MapPin className="w-4 h-4 mr-2 text-orange-500" />
+                      <span className="text-sm">{selectedEvent.location}</span>
+                    </div>
+                    <div className="flex items-center text-slate-300">
+                      <Clock className="w-4 h-4 mr-2 text-orange-500" />
+                      <span className="text-sm">{selectedEvent.time}</span>
+                    </div>
+                    <div className="flex items-center justify-end">
+                      <span className={`px-3 py-1 rounded-full text-xs text-white ${getEventTypeColor(selectedEvent.type)}`}>
+                        {selectedEvent.type.charAt(0).toUpperCase() + selectedEvent.type.slice(1)}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <p className="text-slate-300 text-sm leading-relaxed mb-6">
+                    {selectedEvent.description}
+                  </p>
+                  
+                  <button className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105">
+                    Book Experience
+                  </button>
+                </div>
+              ) : (
+                <div className="text-center py-12">
+                  <Calendar className="w-16 h-16 text-slate-500 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-slate-400 mb-2">
+                    Select a Date
+                  </h3>
+                  <p className="text-slate-500 text-sm">
+                    Click on any highlighted date to view event details and book your spiritual journey.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* <footer className="bg-black text-gray-400 py-8 px-8 mt-10">
-        <div className="flex justify-between">
-          <div>
-            <div className="text-orange-500 font-bold text-xl mb-2">
-              ✺ Monastery360
-            </div>
-            <p className="text-sm max-w-xs">
-              Preserving and promoting Sikkim’s rich monastic heritage through
-              digital innovation.
-            </p>
-          </div>
-
-          <div className="flex space-x-16">
-            <div>
-              <h3 className="font-bold text-white mb-2">Explore</h3>
-              <ul className="space-y-1 text-sm">
-                <li>Virtual Tours</li>
-                <li>Interactive Map</li>
-                <li>Digital Archives</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-white mb-2">Engage</h3>
-              <ul className="space-y-1 text-sm">
-                <li>Cultural Calendar</li>
-                <li>Bookings</li>
-                <li>Contact Us</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-white mb-2">About</h3>
-              <ul className="space-y-1 text-sm">
-                <li>Our Mission</li>
-                <li>Preservation Efforts</li>
-              </ul>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-white mb-2">Get in Touch</h3>
-            <button className="px-4 py-2 bg-orange-500 rounded text-white font-bold">
-              Contact Us
-            </button>
-          </div>
-        </div>
-      </footer> */}
     </div>
   );
 };
 
-export default CulturalCalender;
+export default CulturalCalendar;

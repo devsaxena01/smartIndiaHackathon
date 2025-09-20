@@ -14,10 +14,10 @@ const Chatbot = () => {
   const [currentMonastery, setCurrentMonastery] = useState(null);
   const chatEndRef = useRef(null);
 
-  //Auto scroll to bottom when messages update
-  // useEffect(() => {
-  //   chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  // }, [messages]);
+  // Auto scroll to bottom when messages update
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   // Handle sending message
   const handleSend = async () => {

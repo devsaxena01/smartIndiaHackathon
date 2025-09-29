@@ -116,7 +116,7 @@ const DigitalArchives = () => {
       </div>
 
       {/* Archive Cards */}
-      <div className="flex-1 p-8">
+      <div className="flex-1 p-8 ">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {filteredArchives.map((item, index) => (
             <motion.div
@@ -130,13 +130,13 @@ const DigitalArchives = () => {
                 className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="p-5">
-                <h3 className="font-bold text-lg">{item.title}</h3>
-                <p className="text-sm text-gray-400 line-clamp-2">
+                <h3 className="text-2xl md:text-2xl font-bold mb-6 bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">{item.title}</h3>
+                <p className="text-sm text-gray-400 max-w-3xl mx-auto leading-relaxed">
                   {item.description}
                 </p>
                 <button
                   onClick={() => handleViewDetails(item)}
-                  className="mt-4 px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg hover:shadow-lg hover:shadow-orange-500/40 transition"
+                  className="mt-4 px-4 py-3 w-full bg-gradient-to-r from-emerald-500 to-teal-500  rounded-xl font-medium hover:shadow-lg transition-all duration-300 hover-scale"
                 >
                   View Details
                 </button>
@@ -168,9 +168,9 @@ const DigitalArchives = () => {
               exit={{ y: 100, opacity: 0 }}
             >
               <div className="flex justify-between items-center">
-                <h2 className="text-xl font-bold">{selectedItem.title}</h2>
+                <h2 className="text-2xl font-bold mb-2 text-white">{selectedItem.title}</h2>
                 <button onClick={closeModal}>
-                  <X className="w-6 h-6 text-white" />
+                  <X className="w-6 h-6 text-white " />
                 </button>
               </div>
               <img
@@ -178,7 +178,7 @@ const DigitalArchives = () => {
                 alt={selectedItem.title}
                 className="my-4 w-full max-h-[400px] object-contain rounded-lg"
               />
-              <p className="text-gray-300">{selectedItem.description}</p>
+              <p className="text-emerald-300 mb-4 font-medium">{selectedItem.description}</p>
             </motion.div>
           </motion.div>
         )}

@@ -108,7 +108,7 @@ const Header = () => {
           >
             Booking
           </Link>
-          <Link to="/chatbot" className="block text-sm text-gray-300 hover:text-purple-400">Ask AI</Link>
+          <Link to="/chatbot" className="block text-sm text-gray-300 hover:text-purple-400">LamaBot AI 🤖</Link>
 
           {isLoggedIn ? (
             <button

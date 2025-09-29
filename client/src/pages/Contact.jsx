@@ -2,7 +2,7 @@ import React from 'react'
 
 const socialLinks = [
   {
-    href: 'https://github.com/devsaxena01',
+    href: '',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path
@@ -14,7 +14,7 @@ const socialLinks = [
     alt: 'GitHub',
   },
   {
-    href: 'https://www.linkedin.com/in/dev-saxena-430614294/',
+    href: '',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path

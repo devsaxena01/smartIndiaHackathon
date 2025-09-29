@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion"
-import { GiMeditation, GiPrayer, GiMountainCave, GiBookAura } from "react-icons/gi";
-import { MdFestival } from "react-icons/md";
-import { BsSunrise } from "react-icons/bs";
-import { Star, Mountain, BookOpen, Theater, User } from "lucide-react";
 import AncientMonasteries from "../components/AncientMonasteries";
 import Testimonials from "../components/Testimonials";
+import Itinerary from "../components/Itinerary";
 import { Link, useNavigate } from "react-router-dom";
 import guide from "../../docs/Sikkim_pocket_guide.pdf"
+import Experience from "../components/Experience";
+import FloatingChatBot from "../components/FloatingChatBot";
+
 
 const Home = () =>  {
   const [isScrolled, setIsScrolled] = useState(false);
-  const navigate = useNavigate();
+  // const [isChatOpen, setIsChatOpen] = useState(false);
+  const navigate = useNavigate(); 
   
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const Home = () =>  {
 
   return (
     <div className="bg-gray-900 text-white overflow-hidden">
-      <style jsx>{`
+      {/* <style jsx>{`
         @keyframes fadeInUp {
           from {
             opacity: 0;
@@ -88,7 +89,7 @@ const Home = () =>  {
         .hover-glow:hover {
           box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3);
         }
-      `}</style>
+      `}</style> */}
 
      <section className="relative h-screen flex items-center justify-center overflow-hidden">
   <div className="absolute inset-0 z-0">
@@ -173,6 +174,13 @@ const Home = () =>  {
       {/* Monasteries Grid */}
       <AncientMonasteries />
 
+
+      {/* Experiences Section */}
+      <Experience/>
+
+  {/* Journey Timeline */}
+      <Itinerary/>
+
       {/* interactive map section */}
       <section className="py-24 px-6 md:px-12 bg-gradient-to-br from-gray-800 to-gray-900">
         <div className="max-w-7xl mx-auto">
@@ -186,8 +194,8 @@ const Home = () =>  {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="bg-gray-800/50 backdrop-blur-lg p-8 rounded-3xl border border-gray-700/50">
-              <div className="aspect-square bg-gradient-to-br from-emerald-600 to-teal-600 rounded-2xl relative overflow-hidden">
+            {/* <div className="bg-gray-800/50 backdrop-blur-lg p-8 rounded-3xl border border-gray-700/50"> */}
+              <div className="aspect-square bg-gradient-to-br from-emerald-600 to-teal-600 rounded-3xl relative overflow-hidden">
                 <iframe
     title="Sikkim Monasteries Map"
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d456280.37284637256!2d88.20!3d27.50!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6a598d58c21f7%3A0x4e7632a4f81e9f59!2sRumtek%20Monastery!5e0!3m2!1sen!2sin!4v1694958000000!5m2!1sen!2sin"
@@ -199,7 +207,7 @@ const Home = () =>  {
     referrerPolicy="no-referrer-when-downgrade"
   ></iframe>
               </div>
-            </div>
+            {/* </div> */}
 
             <div className="space-y-6">
               <div className="bg-gray-800/50 backdrop-blur-lg p-6 rounded-2xl border border-gray-700/50">
@@ -235,7 +243,7 @@ const Home = () =>  {
       </section>
 
       {/* Testimonials Section */}
-      {/* <Testimonials/> */}
+      <Testimonials/>
 
       {/* Photography Gallery */}
       <section id="serenity" className="py-24 px-6 md:px-12 bg-gradient-to-br from-gray-900 to-black">
@@ -309,6 +317,8 @@ const Home = () =>  {
   </div>
 </section>
 
+ {/* Floating Chatbot */}
+     <FloatingChatBot/>
       
     </div>
   );

@@ -376,6 +376,7 @@ function CreateTrip() {
             </div>
           </div>
         </div>
+        
 
         {/* Progress Summary */}
         <div className="mt-12 max-w-2xl mx-auto">

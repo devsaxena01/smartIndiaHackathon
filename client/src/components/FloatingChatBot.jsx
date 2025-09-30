@@ -101,13 +101,13 @@ Always respond in a way that feels **interactive, friendly, and visually scannab
     <>
       {/* Floating Chat Window */}
       {open && (
-        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2
+        <div className="fixed bottom-4 
     w-[98%] sm:w-[400px] max-w-md
     h-[60vh] sm:h-[550px]
     flex flex-col rounded-xl overflow-hidden 
     shadow-2xl border border-amber-800/30 
     bg-slate-900/90 backdrop-blur-xl 
-    z-50">
+    z-50 left-1/2 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0">
           {/* Header */}
           <div className="flex justify-between items-center px-4 py-2 bg-gray-800 rounded-t-2xl border-b border-gray-700">
             <h1 className="text-white font-bold">LamaBot AI</h1>

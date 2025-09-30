@@ -8,7 +8,7 @@ import archivesRouter from "./routes/archives.route.js";
 const app = express();
 
 app.use(cors({
-  origin: ["http://localhost:5173" , "https://monastery360-70f5.onrender.com"], 
+  origin: "http://localhost:5173" || "https://monastery360-70f5.onrender.com", 
   credentials: true
 }));
 app.use(express.json({ limit: "16kb" }));

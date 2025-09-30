@@ -22,22 +22,19 @@ const Signup = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
+  e.preventDefault();
+  setError("");
 
-    try {
-      const response = await signupData(formData);
-      console.log("Registration Successful", response);
+  const response = await signupData(formData);
+  console.log("Signup Response:", response);
 
-      if (response?.success) {
-        navigate("/login"); // redirect after signup
-      } else {
-        setError(response.message || "Registration Failed");
-      }
-    } catch (error) {
-      setError("Something went wrong. Please try again.");
-    }
-  };
+  if (response.success) {
+    navigate("/login");
+  } else {
+    setError(response.message);
+  }
+};
+
 
   return (
     <div className="flex items-center justify-center min-h-screen 

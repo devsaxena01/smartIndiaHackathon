@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { interactiveMapData } from "../apiCalls/interactivemap";
 
 const InteractiveMap = () => {
   const { id } = useParams();
@@ -11,8 +12,7 @@ const InteractiveMap = () => {
   useEffect(() => {
     const fetchMonastery = async () => {
       try {
-        const res = await fetch(`https://monastery.onrender.com/api/v1/monasteries/${id}`);
-        const data = await res.json();
+        const data = await interactiveMapData(id);
         setMonastery(data.data || null);
       } catch (err) {
         console.error("Error fetching monastery:", err);

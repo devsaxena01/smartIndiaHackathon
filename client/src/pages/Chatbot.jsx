@@ -99,8 +99,7 @@ Always respond in a way that feels **interactive, friendly, and visually scannab
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-slate-900 to-gray-800 flex items-center justify-center">
       {/* Chatbot Card */}
-      <div className="w-full max-w-[1600px] min-h-screen flex flex-col overflow-hidden shadow-2xl border border-amber-800/30  bg-slate-900/80 backdrop-blur-xl mx-auto p-4 sm:p-6 lg:p-10
-">      
+      <div className="w-full max-w-[1600px] min-h-screen flex flex-col overflow-hidden shadow-2xl border border-amber-800/30  bg-slate-900/80 backdrop-blur-xl mx-auto p-4 sm:p-6 lg:p-10">      
         {/* Header */}
         <div className="bg-gray-800 px-6 py-2 flex items-center justify-between">
           <Link
@@ -125,7 +124,7 @@ Always respond in a way that feels **interactive, friendly, and visually scannab
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-slate-900/90 to-gray-950">
+        <div className="flex-1 p-6 space-y-4 bg-gradient-to-b from-slate-900/90 to-gray-950 overflow-y-auto max-h-[80vh]">
           {messages.map((msg, idx) => (
             <div
               key={idx}

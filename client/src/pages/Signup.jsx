@@ -26,7 +26,7 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/users/registerUser",
+        "https://monastery.onrender.com/api/v1/users/registerUser",
         formData
       );
       console.log("Registration Successful", response.data);

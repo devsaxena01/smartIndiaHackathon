@@ -23,7 +23,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/users/login",
+        "https://monastery.onrender.com/api/v1/users/login",
         formData
       );
       console.log("Login Successful", response.data);

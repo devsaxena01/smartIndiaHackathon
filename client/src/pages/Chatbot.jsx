@@ -99,7 +99,7 @@ Always respond in a way that feels **interactive, friendly, and visually scannab
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-slate-900 to-gray-800 flex items-center justify-center">
       {/* Chatbot Card */}
-      <div className="w-full max-w-[1600px] h-[90vh] sm:h-[100vh] flex flex-col overflow-hidden shadow-2xl border border-amber-800/30 bg-slate-900/80 backdrop-blur-xl mx-auto">
+      <div className="w-full max-w-[1600px] h-[100vh] sm:h-[100vh] flex flex-col overflow-hidden shadow-2xl border border-amber-800/30 bg-slate-900/80 backdrop-blur-xl mx-auto">
         
         {/* Header */}
         <div className="bg-gray-800 px-4 sm:px-6 py-3 flex items-center justify-between">

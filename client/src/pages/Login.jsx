@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { loginData } from '../apiCalls/login';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,19 +23,22 @@ const Login = () => {
     setError("");
 
     try {
-      const response = await axios.post(
-        "https://monastery.onrender.com/api/v1/users/login",
-        formData
-      );
-      console.log("Login Successful", response.data);
+      const data = await loginData(formData); // ✅ use API function
 
-      localStorage.setItem("accessToken", response.data.data.accessToken);
-      localStorage.setItem("user", JSON.stringify(response.data.data.user));
+      if (data.success === false || !data.data) {
+        setError(data.message || "Login Failed. Check your username and password");
+        return;
+      }
 
-      navigate("/")
+      console.log("Login Successful", data);
+
+      localStorage.setItem("accessToken", data.data.accessToken);
+      localStorage.setItem("user", JSON.stringify(data.data.user));
+
+      navigate("/");
     } catch (error) {
       console.log("Error occurred", error);
-      setError(error.response?.data.message || "Login Failed. Check your username and password");
+      setError("Login Failed. Please try again.");
     }
   };
 

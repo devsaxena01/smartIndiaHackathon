@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { User, Mail, Lock } from "lucide-react";
 import axios from "axios";
+import { signupData } from "../apiCalls/signup";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -25,15 +26,16 @@ const Signup = () => {
     setError("");
 
     try {
-      const response = await axios.post(
-        "https://monastery.onrender.com/api/v1/users/registerUser",
-        formData
-      );
-      console.log("Registration Successful", response.data);
-      navigate("/login");
+      const response = await signupData(formData);
+      console.log("Registration Successful", response);
+
+      if (response?.success) {
+        navigate("/login"); // redirect after signup
+      } else {
+        setError(response.message || "Registration Failed");
+      }
     } catch (error) {
-      console.log("Error occurred", error);
-      setError(error.response?.data.message || "Registration Failed");
+      setError("Something went wrong. Please try again.");
     }
   };
 

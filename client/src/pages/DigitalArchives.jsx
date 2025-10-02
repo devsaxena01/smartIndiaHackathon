@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { archivesData } from "../apiCalls/archives";
 import {
-  Search,
   Filter,
-  Calendar,
-  MapPin,
   RotateCcw,
   X,
 } from "lucide-react";
@@ -21,7 +18,7 @@ const DigitalArchives = () => {
     keyword: "",
   });
   const [selectedItem, setSelectedItem] = useState(null);
-  const [showFilters, setShowFilters] = useState(false); // 👈 mobile filter toggle
+  const [showFilters, setShowFilters] = useState(false); // mobile filter toggle
 
   const navigate = useNavigate();
 
@@ -65,59 +62,55 @@ const DigitalArchives = () => {
     );
   });
 
-  const FilterContent = () => (
-    <div className="p-6">
-      <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-        <Filter className="w-5 h-5 text-orange-400" /> Filters
-      </h2>
-      <input
-        type="text"
-        name="keyword"
-        placeholder="Search keyword..."
-        value={filters.keyword}
-        onChange={handleChange}
-        className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-orange-500"
-      />
-      <input
-        type="text"
-        name="contentType"
-        placeholder="Content type..."
-        value={filters.contentType}
-        onChange={handleChange}
-        className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700"
-      />
-      <input
-        type="text"
-        name="era"
-        placeholder="Era..."
-        value={filters.era}
-        onChange={handleChange}
-        className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700"
-      />
-      <input
-        type="text"
-        name="monastery"
-        placeholder="Monastery..."
-        value={filters.monastery}
-        onChange={handleChange}
-        className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700"
-      />
-      <button
-        onClick={() =>
-          setFilters({ contentType: "", era: "", monastery: "", keyword: "" })
-        }
-        className="mt-4 flex items-center gap-2 px-3 py-2 bg-orange-500 hover:bg-orange-600 rounded-lg w-full justify-center"
-      >
-        <RotateCcw className="w-4 h-4" /> Reset
-      </button>
-    </div>
-  );
-
   return (
     <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white font-sans min-h-screen flex">
       {/* Sidebar Filters - Desktop */}
       <div className="w-72 bg-gray-800/40 backdrop-blur-md rounded-r-2xl border-r border-gray-700 hidden lg:block">
-        <FilterContent />
+        <div className="p-6">
+          <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+            <Filter className="w-5 h-5 text-orange-400" /> Filters
+          </h2>
+          <input
+            type="text"
+            name="keyword"
+            placeholder="Search keyword..."
+            value={filters.keyword}
+            onChange={handleChange}
+            className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-orange-500"
+          />
+          <input
+            type="text"
+            name="contentType"
+            placeholder="Content type..."
+            value={filters.contentType}
+            onChange={handleChange}
+            className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700"
+          />
+          <input
+            type="text"
+            name="era"
+            placeholder="Era..."
+            value={filters.era}
+            onChange={handleChange}
+            className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700"
+          />
+          <input
+            type="text"
+            name="monastery"
+            placeholder="Monastery..."
+            value={filters.monastery}
+            onChange={handleChange}
+            className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700"
+          />
+          <button
+            onClick={() =>
+              setFilters({ contentType: "", era: "", monastery: "", keyword: "" })
+            }
+            className="mt-4 flex items-center gap-2 px-3 py-2 bg-orange-500 hover:bg-orange-600 rounded-lg w-full justify-center"
+          >
+            <RotateCcw className="w-4 h-4" /> Reset
+          </button>
+        </div>
       </div>
 
       {/* Archive Cards */}
@@ -222,7 +215,48 @@ const DigitalArchives = () => {
                   <X className="w-6 h-6 text-white" />
                 </button>
               </div>
-              <FilterContent />
+
+              {/* SAME FILTER INPUTS FOR MOBILE */}
+              <input
+                type="text"
+                name="keyword"
+                placeholder="Search keyword..."
+                value={filters.keyword}
+                onChange={handleChange}
+                className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-orange-500"
+              />
+              <input
+                type="text"
+                name="contentType"
+                placeholder="Content type..."
+                value={filters.contentType}
+                onChange={handleChange}
+                className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700"
+              />
+              <input
+                type="text"
+                name="era"
+                placeholder="Era..."
+                value={filters.era}
+                onChange={handleChange}
+                className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700"
+              />
+              <input
+                type="text"
+                name="monastery"
+                placeholder="Monastery..."
+                value={filters.monastery}
+                onChange={handleChange}
+                className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700"
+              />
+              <button
+                onClick={() =>
+                  setFilters({ contentType: "", era: "", monastery: "", keyword: "" })
+                }
+                className="mt-4 flex items-center gap-2 px-3 py-2 bg-orange-500 hover:bg-orange-600 rounded-lg w-full justify-center"
+              >
+                <RotateCcw className="w-4 h-4" /> Reset
+              </button>
             </motion.div>
           </motion.div>
         )}

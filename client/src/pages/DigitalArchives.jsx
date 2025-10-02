@@ -21,6 +21,7 @@ const DigitalArchives = () => {
     keyword: "",
   });
   const [selectedItem, setSelectedItem] = useState(null);
+  const [showFilters, setShowFilters] = useState(false); // 👈 mobile filter toggle
 
   const navigate = useNavigate();
 
@@ -53,70 +54,82 @@ const DigitalArchives = () => {
   const filteredArchives = archives.filter((item) => {
     return (
       (filters.contentType === "" ||
-        item.type.toLowerCase().includes(filters.contentType.toLowerCase())) &&
+        item.type?.toLowerCase().includes(filters.contentType.toLowerCase())) &&
       (filters.era === "" ||
-        item.era.toLowerCase().includes(filters.era.toLowerCase())) &&
+        item.era?.toLowerCase().includes(filters.era.toLowerCase())) &&
       (filters.monastery === "" ||
-        item.monastery
-          .toLowerCase()
-          .includes(filters.monastery.toLowerCase())) &&
+        item.monastery?.toLowerCase().includes(filters.monastery.toLowerCase())) &&
       (filters.keyword === "" ||
-        item.title.toLowerCase().includes(filters.keyword.toLowerCase()) ||
-        item.description.toLowerCase().includes(filters.keyword.toLowerCase()))
+        item.title?.toLowerCase().includes(filters.keyword.toLowerCase()) ||
+        item.description?.toLowerCase().includes(filters.keyword.toLowerCase()))
     );
   });
 
+  const FilterContent = () => (
+    <div className="p-6">
+      <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+        <Filter className="w-5 h-5 text-orange-400" /> Filters
+      </h2>
+      <input
+        type="text"
+        name="keyword"
+        placeholder="Search keyword..."
+        value={filters.keyword}
+        onChange={handleChange}
+        className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-orange-500"
+      />
+      <input
+        type="text"
+        name="contentType"
+        placeholder="Content type..."
+        value={filters.contentType}
+        onChange={handleChange}
+        className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700"
+      />
+      <input
+        type="text"
+        name="era"
+        placeholder="Era..."
+        value={filters.era}
+        onChange={handleChange}
+        className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700"
+      />
+      <input
+        type="text"
+        name="monastery"
+        placeholder="Monastery..."
+        value={filters.monastery}
+        onChange={handleChange}
+        className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700"
+      />
+      <button
+        onClick={() =>
+          setFilters({ contentType: "", era: "", monastery: "", keyword: "" })
+        }
+        className="mt-4 flex items-center gap-2 px-3 py-2 bg-orange-500 hover:bg-orange-600 rounded-lg w-full justify-center"
+      >
+        <RotateCcw className="w-4 h-4" /> Reset
+      </button>
+    </div>
+  );
+
   return (
     <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white font-sans min-h-screen flex">
-      {/* Sidebar Filters */}
-      <div className="w-72 bg-gray-800/40 backdrop-blur-md p-6 rounded-r-2xl border-r border-gray-700 hidden lg:block">
-        <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-          <Filter className="w-5 h-5 text-orange-400" /> Filters
-        </h2>
-        <input
-          type="text"
-          name="keyword"
-          placeholder="Search keyword..."
-          value={filters.keyword}
-          onChange={handleChange}
-          className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700 focus:ring-2 focus:ring-orange-500"
-        />
-        <input
-          type="text"
-          name="contentType"
-          placeholder="Content type..."
-          value={filters.contentType}
-          onChange={handleChange}
-          className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700"
-        />
-        <input
-          type="text"
-          name="era"
-          placeholder="Era..."
-          value={filters.era}
-          onChange={handleChange}
-          className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700"
-        />
-        <input
-          type="text"
-          name="monastery"
-          placeholder="Monastery..."
-          value={filters.monastery}
-          onChange={handleChange}
-          className="w-full mb-3 p-2 rounded-lg bg-gray-900 border border-gray-700"
-        />
-        <button
-          onClick={() =>
-            setFilters({ contentType: "", era: "", monastery: "", keyword: "" })
-          }
-          className="mt-4 flex items-center gap-2 px-3 py-2 bg-orange-500 hover:bg-orange-600 rounded-lg w-full justify-center"
-        >
-          <RotateCcw className="w-4 h-4" /> Reset
-        </button>
+      {/* Sidebar Filters - Desktop */}
+      <div className="w-72 bg-gray-800/40 backdrop-blur-md rounded-r-2xl border-r border-gray-700 hidden lg:block">
+        <FilterContent />
       </div>
 
       {/* Archive Cards */}
-      <div className="flex-1 p-8 ">
+      <div className="flex-1 p-8 relative">
+        {/* Mobile filter button */}
+        <button
+          onClick={() => setShowFilters(true)}
+          className="lg:hidden mb-6 flex items-center gap-2 px-4 py-2 bg-orange-500 hover:bg-orange-600 rounded-lg"
+        >
+          <Filter className="w-5 h-5" /> Filters
+        </button>
+
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {filteredArchives.map((item, index) => (
             <motion.div
@@ -130,13 +143,15 @@ const DigitalArchives = () => {
                 className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="p-5">
-                <h3 className="text-2xl md:text-2xl font-bold mb-6 bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">{item.title}</h3>
-                <p className="text-sm text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-gray-400 leading-relaxed">
                   {item.description}
                 </p>
                 <button
                   onClick={() => handleViewDetails(item)}
-                  className="mt-4 px-4 py-3 w-full bg-gradient-to-r from-emerald-500 to-teal-500  rounded-xl font-medium hover:shadow-lg transition-all duration-300 hover-scale"
+                  className="mt-4 px-4 py-3 w-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl font-medium hover:shadow-lg transition-all duration-300"
                 >
                   View Details
                 </button>
@@ -146,13 +161,11 @@ const DigitalArchives = () => {
         </div>
 
         {filteredArchives.length === 0 && (
-          <div className="text-center py-12 text-gray-400">
-            No archives found
-          </div>
+          <div className="text-center py-12 text-gray-400">No archives found</div>
         )}
       </div>
 
-      {/* Modal */}
+      {/* Modal for Archive Details */}
       <AnimatePresence>
         {selectedItem && (
           <motion.div
@@ -168,7 +181,9 @@ const DigitalArchives = () => {
               exit={{ y: 100, opacity: 0 }}
             >
               <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold mb-2 text-white">{selectedItem.title}</h2>
+                <h2 className="text-2xl font-bold mb-2 text-white">
+                  {selectedItem.title}
+                </h2>
                 <button onClick={closeModal}>
                   <X className="w-6 h-6 text-white " />
                 </button>
@@ -178,7 +193,36 @@ const DigitalArchives = () => {
                 alt={selectedItem.title}
                 className="my-4 w-full max-h-[400px] object-contain rounded-lg"
               />
-              <p className="text-emerald-300 mb-4 font-medium">{selectedItem.description}</p>
+              <p className="text-emerald-300 mb-4 font-medium">
+                {selectedItem.description}
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Filter Drawer */}
+      <AnimatePresence>
+        {showFilters && (
+          <motion.div
+            className="fixed inset-0 z-50 bg-black/70 flex justify-end"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="w-72 bg-gray-800 p-6 h-full shadow-xl flex flex-col"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+            >
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-lg font-semibold text-white">Filters</h2>
+                <button onClick={() => setShowFilters(false)}>
+                  <X className="w-6 h-6 text-white" />
+                </button>
+              </div>
+              <FilterContent />
             </motion.div>
           </motion.div>
         )}

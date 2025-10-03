@@ -27,7 +27,7 @@ const Header = () => {
       <nav className="flex justify-between items-center px-6 py-4">
         {/* Logo / Brand */}
         <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-500 to-teal-400 animate-pulse">
-          ✺ Monastery360
+          <Link to="/">✺ Monastery360</Link>
         </div>
 
         {/* Desktop Nav */}

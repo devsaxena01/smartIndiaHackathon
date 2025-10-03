@@ -100,11 +100,7 @@ const Home = () =>  {
       playsInline
       className="w-full h-full object-cover"
       poster="https://picsum.photos/1920/1080?random=7"
-      onError={(e) => {
-        //image if video fails
-        e.target.style.display = "none";
-        e.target.nextElementSibling.style.display = "block";
-      }}>
+      >
       <source src="/videos/monastery_f_f.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>

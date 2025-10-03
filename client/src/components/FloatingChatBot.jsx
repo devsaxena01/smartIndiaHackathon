@@ -5,97 +5,83 @@ import ReactMarkdown from "react-markdown";
 const FloatingChatbot = () => {
   const [open, setOpen] = useState(false);
    const [messages, setMessages] = useState([
-      {
-        sender: "bot",
-        text: "Hi there! How can I help you today?",
-      },
-    ]);
-    const [input, setInput] = useState("");
-    const [isTyping, setIsTyping] = useState(false);
-    const [currentMonastery, setCurrentMonastery] = useState(null);
-    const chatEndRef = useRef(null);
-  
-    // Auto scroll
-    useEffect(() => {
-      chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages]);
-  
-    // Send handler
-    const handleSend = async () => {
-      if (!input.trim()) return;
-  
-      setMessages((prev) => [...prev, { sender: "user", text: input }]);
-      setIsTyping(true);
-  
-      try {
-        const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-  
-        // System prompt for better formatting
-       const systemPrompt = `
-You are LamaBot AI, a wise and friendly monk guiding visitors through the sacred monasteries of Sikkim. 
-Your goal is to **educate, inspire, and delight** users with rich knowledge about Buddhist heritage, history, architecture, festivals, and culture. 
-
-Guidelines for your answers:
-- Use a **warm, welcoming, and conversational tone** as if speaking to a curious traveler. 🙏
-- Highlight **important monastery names, festivals, or historical facts in bold**. 🏯
-- Include **emojis** to make the response visually appealing where appropriate (e.g., 🌸, 🕉️, 🏔️).  
-- Break text into **short paragraphs, bullet points, or numbered lists** for easy reading.  
-- Add **fun facts or interesting tidbits** that make the information memorable. ✨  
-- Give **small visitor tips** when relevant (e.g., best time to visit, cultural etiquette). 🕰️👣  
-- Keep explanations **simple, clear, and engaging**, suitable for tourists and learners.  
-- When asked about architecture, history, or festivals, provide **vivid, immersive descriptions** that make the user feel like they are visiting.  
-
-Example style:
-- "**Rumtek Monastery** 🏯: Known for its stunning murals and annual ceremonies. Fun fact: It houses the largest collection of sacred Buddhist texts in Sikkim! 📜"
-- "Visitors can enjoy the peaceful surroundings 🌸 while learning about traditional Buddhist rituals 🕉️."
-- "Tip: Visit early in the morning to catch the monks' morning prayers and avoid the crowds. ⏰"
-
-Always respond in a way that feels **interactive, friendly, and visually scannable**, making the user excited to explore the monasteries of Sikkim.
-`;
-
-  
-        const res = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              contents: [
-                // { parts: [{ text: systemPrompt }] },
-                { parts: [{ text: input }] },
-              ],
-            }),
-          }
-        );
-  
-        const data = await res.json();
-        const botReply =
-          data.candidates?.[0]?.content.parts?.[0]?.text ||
-          "Sorry, I couldn't fetch an answer right now.";
-  
-        setTimeout(() => {
-          setMessages((prev) => [...prev, { sender: "bot", text: botReply }]);
-          setIsTyping(false);
-        }, 800);
-  
-        setCurrentMonastery(null);
-      } catch (err) {
-        console.error("Error:", err);
-        setTimeout(() => {
-          setMessages((prev) => [
-            ...prev,
-            {
-              sender: "bot",
-              text: "Something went wrong connecting to Gemini. Please try again.",
-            },
-          ]);
-          setIsTyping(false);
-        }, 800);
-        setCurrentMonastery(null);
-      }
-  
-      setInput("");
-    };
+       {
+         sender: "bot",
+         text: "Hi there! How can I help you today?",
+       },
+     ]);
+     const [input, setInput] = useState("");
+     const [isTyping, setIsTyping] = useState(false);
+     // const [currentMonastery, setCurrentMonastery] = useState(null);
+     const chatEndRef = useRef(null);
+   
+     // Auto scroll
+     useEffect(() => {
+       chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+     }, [messages]);
+   
+     const handleSend = async () => {
+       if (!input.trim()) return;
+   
+       setMessages((prev) => [...prev, { sender: "user", text: input }]);
+       setIsTyping(true);
+   
+       try {
+         // const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+   
+         // System prompt for better formatting
+         const systemPrompt = `
+   You are LamaBot AI, a wise and friendly monk guiding visitors through the sacred monasteries of Sikkim. 
+   Your goal is to **educate, inspire, and delight** users with rich knowledge about Buddhist heritage, history, architecture, festivals, and culture. 
+   
+   Guidelines for your answers:
+   - Use a **warm, welcoming, and conversational tone** as if speaking to a curious traveler. 🙏
+   - Highlight **important monastery names, festivals, or historical facts in bold**. 🏯
+   - Include **emojis** to make the response visually appealing where appropriate (e.g., 🌸, 🕉️, 🏔️).  
+   - Break text into **short paragraphs, bullet points, or numbered lists** for easy reading.  
+   - Add **fun facts or interesting tidbits** that make the information memorable. ✨  
+   - Give **small visitor tips** when relevant (e.g., best time to visit, cultural etiquette). 🕰️👣  
+   - Keep explanations **simple, clear, and engaging**, suitable for tourists and learners.  
+   - When asked about architecture, history, or festivals, provide **vivid, immersive descriptions** that make the user feel like they are visiting.  
+   
+   Example style:
+   - "**Rumtek Monastery** 🏯: Known for its stunning murals and annual ceremonies. Fun fact: It houses the largest collection of sacred Buddhist texts in Sikkim! 📜"
+   - "Visitors can enjoy the peaceful surroundings 🌸 while learning about traditional Buddhist rituals 🕉️."
+   - "Tip: Visit early in the morning to catch the monks' morning prayers and avoid the crowds. ⏰"
+   
+   Always respond in a way that feels **interactive, friendly, and visually scannable**, making the user excited to explore the monasteries of Sikkim.
+   `;
+   
+         const res = await fetch("http://localhost:5000/api/chatbot", {
+           method: "POST",
+           headers: { "Content-Type": "application/json" },
+           body: JSON.stringify({ message: input }), // must match backend
+         });
+   
+         const data = await res.json();
+         const botReply =
+           data.reply || "🙏 Sorry, I couldn't fetch an answer right now.";
+   
+         setTimeout(() => {
+           setMessages((prev) => [...prev, { sender: "bot", text: botReply }]);
+           setIsTyping(false);
+         }, 800);
+       } catch (err) {
+         console.error("Error:", err);
+         setTimeout(() => {
+           setMessages((prev) => [
+             ...prev,
+             {
+               sender: "bot",
+               text: "🙏 Something went wrong connecting to the server. Please try again.",
+             },
+           ]);
+           setIsTyping(false);
+         }, 800);
+       }
+   
+       setInput("");
+     };
 
   return (
     <>

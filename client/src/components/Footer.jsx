@@ -37,7 +37,6 @@ const Footer = () => {
           <h4 className="text-white font-semibold mb-3">Explore</h4>
           <ul className="space-y-2 text-sm">
             <li className="hover:text-white cursor-pointer"><Link to="/virtual-tours"> Virtual Tours </Link></li>
-            <li className="hover:text-white cursor-pointer"><Link to="/"> Interactive Map </Link></li>
             <li className="hover:text-white cursor-pointer"><Link to="/digital-archives"> Digital Archives </Link></li>
           </ul>
         </div>
@@ -49,6 +48,7 @@ const Footer = () => {
             <li className="hover:text-white cursor-pointer"><Link to="/cultural-calender"> Cultural Calender </Link></li>
             <li className="hover:text-white cursor-pointer"><Link to="/booking"> Booking </Link></li>
             <li className="hover:text-white cursor-pointer"><Link to="/contact"> Contact Us </Link></li>
+            <li className="hover:text-white cursor-pointer"><Link to="/team"> Meet the Team </Link></li>
           </ul>
         </div>
 

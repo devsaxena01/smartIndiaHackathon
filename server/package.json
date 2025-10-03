@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "start": "nodemon src/index.js"
   },
   "author": "Abhay Pratap Singh and Mayank Rouniyar",
   "license": "ISC",

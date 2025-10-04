@@ -26,7 +26,7 @@ const Header = () => {
     <header className="bg-gray-900 text-white font-sans sticky top-0 z-50 shadow-md">
       <nav className="flex justify-between items-center px-6 py-4">
         {/* Logo / Brand */}
-        <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-500 to-teal-400 animate-pulse">
+        <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-500 to-teal-400 animate-none">
           <Link to="/">✺ Monastery360</Link>
         </div>
 

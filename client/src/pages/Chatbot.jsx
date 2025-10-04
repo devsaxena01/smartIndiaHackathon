@@ -52,7 +52,7 @@ Example style:
 Always respond in a way that feels **interactive, friendly, and visually scannable**, making the user excited to explore the monasteries of Sikkim.
 `;
 
-      const res = await fetch("http://localhost:5000/api/chatbot", {
+      const res = await fetch("https://monastery.onrender.com/api/chatbot", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: input }), // must match backend

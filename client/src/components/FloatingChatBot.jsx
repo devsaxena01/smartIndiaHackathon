@@ -55,7 +55,7 @@ const FloatingChatbot = () => {
          const res = await fetch("https://monastery.onrender.com/api/chatbot", {
            method: "POST",
            headers: { "Content-Type": "application/json" },
-           body: JSON.stringify({ message: input }), // must match backend
+           body: JSON.stringify({ message: input , tone:"friendly" }), // must match backend
          });
    
          const data = await res.json();

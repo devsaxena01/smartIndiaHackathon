@@ -108,7 +108,7 @@ Always respond in a way that feels **interactive, friendly, and visually scannab
             </div>
           </div>
 
-          <Mountain className="w-6 h-6 sm:w-7 sm:h-7 text-white/90" />
+          <img className="h-12 w-12" src="images/heritage.png"></img>
         </div>
 
         {/* Messages */}

@@ -41,6 +41,7 @@ const app = express();
 // Middleware
 app.use(cors({
   origin: ["http://localhost:5173" , "https://monastery360-70f5.onrender.com"],
+   methods: ["GET", "POST"],
   credentials: true,
 }));
 app.use(express.json({ limit: "16kb" }));

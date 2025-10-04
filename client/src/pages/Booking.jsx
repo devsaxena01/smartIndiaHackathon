@@ -40,7 +40,7 @@ function Booking() {
     setTripReady(false);
 
     try {
-      const res = await fetch("http://localhost:5000/api/booking", {
+      const res = await fetch("https://monastery.onrender.com/api/booking", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ Name, Location, Days, Travellers, Budget }),

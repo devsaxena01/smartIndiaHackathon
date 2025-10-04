@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, MapPin, Clock, Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const CulturalCalendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -246,7 +247,7 @@ const CulturalCalendar = () => {
                   </p>
                   
                   <button className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-105">
-                    Book Experience
+                    <Link to="/booking">Book Experience</Link>
                   </button>
                 </div>
               ) : (

@@ -99,19 +99,13 @@ const Home = () =>  {
       loop
       playsInline
       className="w-full h-full object-cover"
-      poster="https://picsum.photos/1920/1080?random=7"
       >
       <source src="/videos/monastery_f_f.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
 
     {/* Fallback image */}
-    <img
-      src="https://picsum.photos/1920/1080?random=7"
-      alt="Monastery landscape"
-      className="w-full h-full object-cover"
-      style={{ display: "none" }}
-    />
+    
 
     {/* black effect on the front page */}
     <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/70"></div>

@@ -6,8 +6,12 @@ import { motion } from "framer-motion";
 const VirtualTour = () => {
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState(""); // search state
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
 
   useEffect(() => {
     const fetchTours = async () => {
@@ -17,16 +21,12 @@ const VirtualTour = () => {
       } catch (err) {
         console.error("Error fetching monasteries:", err);
       } finally {
-        setLoading(false);
+        setTimeout(() => setLoading(false), 1200); // smooth transition
       }
     };
-
     fetchTours();
   }, []);
 
-  if (loading) return <p className="text-center text-white">Loading tours...</p>;
-
-  // animation variants
   const fadeInUp = {
     hidden: { opacity: 0, y: 50 },
     visible: (i = 1) => ({
@@ -36,10 +36,66 @@ const VirtualTour = () => {
     }),
   };
 
-  // filter tours based on search input
   const filteredTours = tours.filter((tour) =>
     tour.name.toLowerCase().includes(search.toLowerCase())
   );
+
+  // 🔥 Animated Loading Screen
+  if (loading) {
+    const loaderVariants = {
+      initial: { opacity: 0, y: 20 },
+      animate: {
+        opacity: [0.4, 1, 0.4],
+        y: [0, -10, 0],
+        transition: {
+          duration: 1.8,
+          ease: "easeInOut",
+          repeat: Infinity,
+        },
+      },
+    };
+
+    return (
+      <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center px-6">
+        <motion.h2
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="text-4xl font-bold mb-10 text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-sky-400"
+        >
+          Loading Virtual Tours...
+        </motion.h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl">
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={i}
+              variants={loaderVariants}
+              initial="initial"
+              animate="animate"
+              className="bg-gray-800 rounded-lg border border-gray-700/60 overflow-hidden"
+              style={{ animationDelay: `${i * 0.15}s` }}
+            >
+              <div className="h-40 w-full bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 bg-[length:200%_100%] animate-[shimmer_1.8s_infinite]" />
+              <div className="p-4 space-y-3">
+                <div className="h-5 bg-gray-700 rounded w-3/4 animate-pulse" />
+                <div className="h-4 bg-gray-700 rounded w-full animate-pulse" />
+                <div className="h-4 bg-gray-700 rounded w-2/3 animate-pulse" />
+                <div className="h-9 bg-gray-700 rounded mt-4 animate-pulse" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <style>{`
+          @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+          }
+        `}</style>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
@@ -59,7 +115,6 @@ const VirtualTour = () => {
           Your browser does not support the video tag.
         </video>
 
-        {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/60"></div>
 
         <div className="relative z-10 text-center h-full flex flex-col justify-center items-center px-10">
@@ -67,9 +122,7 @@ const VirtualTour = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="text-5xl md:text-8xl font-bold mb-6 
-              bg-gradient-to-r from-white/70 via-green-200/60 to-sky-200/70 
-              bg-clip-text text-transparent drop-shadow-md"
+            className="text-5xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white/70 via-green-200/60 to-sky-200/70 bg-clip-text text-transparent drop-shadow-md"
           >
             Virtual Tour
           </motion.h2>
@@ -93,9 +146,7 @@ const VirtualTour = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-2xl md:text-4xl text-center font-bold mb-6 
-            bg-gradient-to-r from-white/70 via-green-200/60 to-sky-200/70 
-            bg-clip-text text-transparent drop-shadow-md"
+          className="text-2xl md:text-4xl text-center font-bold mb-6 bg-gradient-to-r from-white/70 via-green-200/60 to-sky-200/70 bg-clip-text text-transparent drop-shadow-md"
         >
           Featured Virtual Tours
         </motion.h3>
@@ -107,8 +158,7 @@ const VirtualTour = () => {
             placeholder="Search monasteries..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700/50 
-              text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
         </div>
 

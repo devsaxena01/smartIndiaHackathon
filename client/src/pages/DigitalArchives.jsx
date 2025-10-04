@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { archivesData } from "../apiCalls/archives";
-import {
-  Filter,
-  RotateCcw,
-  X,
-} from "lucide-react";
+import { Filter, RotateCcw, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const DigitalArchives = () => {
@@ -18,9 +14,13 @@ const DigitalArchives = () => {
     keyword: "",
   });
   const [selectedItem, setSelectedItem] = useState(null);
-  const [showFilters, setShowFilters] = useState(false); // mobile filter toggle
+  const [showFilters, setShowFilters] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
 
   useEffect(() => {
     const fetchArchives = async () => {
@@ -30,16 +30,71 @@ const DigitalArchives = () => {
       } catch (err) {
         console.error("Error fetching archives:", err);
       } finally {
-        setLoading(false);
+        setTimeout(() => setLoading(false), 1200); // Smooth transition
       }
     };
 
     fetchArchives();
   }, []);
 
-  if (loading)
-    return <p className="text-center text-white">Loading archives...</p>;
+  // 🔥 Animated Loading Screen
+  if (loading) {
+    const loaderVariants = {
+      initial: { opacity: 0, y: 20 },
+      animate: {
+        opacity: [0.4, 1, 0.4],
+        y: [0, -10, 0],
+        transition: {
+          duration: 1.8,
+          ease: "easeInOut",
+          repeat: Infinity,
+        },
+      },
+    };
 
+    return (
+      <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center px-6">
+        <motion.h2
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="text-4xl font-bold mb-10 text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-sky-400"
+        >
+          Loading Digital Archives...
+        </motion.h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl">
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={i}
+              variants={loaderVariants}
+              initial="initial"
+              animate="animate"
+              className="bg-gray-800 rounded-lg border border-gray-700/60 overflow-hidden"
+              style={{ animationDelay: `${i * 0.15}s` }}
+            >
+              <div className="h-40 w-full bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 bg-[length:200%_100%] animate-[shimmer_1.8s_infinite]" />
+              <div className="p-4 space-y-3">
+                <div className="h-5 bg-gray-700 rounded w-3/4 animate-pulse" />
+                <div className="h-4 bg-gray-700 rounded w-full animate-pulse" />
+                <div className="h-4 bg-gray-700 rounded w-2/3 animate-pulse" />
+                <div className="h-9 bg-gray-700 rounded mt-4 animate-pulse" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <style>{`
+          @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+          }
+        `}</style>
+      </div>
+    );
+  }
+
+  // ✅ Regular Page Rendering
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFilters((prev) => ({ ...prev, [name]: value }));

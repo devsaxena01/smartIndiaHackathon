@@ -99,13 +99,19 @@ const Home = () =>  {
       loop
       playsInline
       className="w-full h-full object-cover"
+      poster="/images/fallback_image.png"
       >
       <source src="/videos/monastery_f_f.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
 
     {/* Fallback image */}
-    
+    <img
+      src="/images/fallback_image.png"
+      alt="Monastery landscape"
+      className="w-full h-full object-cover"
+      style={{ display: "none" }}
+    />
 
     {/* black effect on the front page */}
     <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/70"></div>

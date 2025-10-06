@@ -13,7 +13,7 @@ connectDB()
     console.log("We are facing Error:", error);
   })
   app.listen(process.env.PORT || 8000,()=>{
-    console.log(`App is listening at port :${process.env.PORT}`);
+    console.log(`App is listening at port : ${process.env.PORT}`);
   })
 })
 .catch((err)=>{

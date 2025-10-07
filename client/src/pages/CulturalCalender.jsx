@@ -584,6 +584,102 @@ const CulturalCalendar = () => {
     image: "https://utsav.gov.in/public/uploads/event_cover_image/event_43/16491603531668131798.jpg",
     description: "As monsoon recedes, Sikkim’s hills often see blooming cherry blossoms. Local communities sometimes hold cultural fairs, music and dance performances.",
     type: "workshop"
+  },
+  '2026-10-01': {
+    title: 'Durga Puja / Dashain Celebrations Start',
+    location: 'Gangtok & Hindu communities across Sikkim',
+    time: 'Morning to evening pujas & community rituals',
+    image: 'https://www.newsonair.gov.in/wp-content/uploads/2025/09/Durga-Puja-1.jpg', 
+    description: 'Dashain (Durga Puja) is a major Hindu festival in Sikkim among Nepali-speaking communities. It involves multi-day worship, offerings, and family gatherings. (Based on regional festival calendars) ',
+    type: 'festival'
+  },
+   '2026-10-20': {
+    title: 'Lakshmi Puja / Diwali',
+    location: 'Homes & temples across Sikkim',
+    time: 'Evening – lamp lighting, pujas & celebrations',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpoDINyIhVPKvvPNnp9ofdUHMyDISEbi2yGw&s',
+    description: 'Lakshmi Puja / Diwali is celebrated in October–November and is the festival of lights. Houses are decorated, lamps are lit, and prayers offered to Goddess Lakshmi. (Mentioned in state festival listings) :contentReference[oaicite:0]{index=0}',
+    type: 'festival'
+  },
+  '2026-10-21': {
+    title: 'Tihar / Bhai Tika & Other Tihar Days',
+    location: 'Across Sikkim, especially Hindu & Nepali communities',
+    time: 'Morning to evening rituals & community visits',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPlmvw8jGQ_C-Rwl55DErx7dlO77AZUlVQkQ&s',
+    description: 'Tihar (also called Deepawali in Nepali tradition) follows Diwali, including the day of Bhai Tika when siblings exchange blessings. (As per Sikkim-Darjeeling festival calendars) :contentReference[oaicite:1]{index=1}',
+    type: 'festival'
+  },
+  '2026-10-25': {
+    title: 'Sikkim Tattoo Expo (tentative)',
+    location: 'Gangtok / Sikkim (venue to be announced)',
+    time: 'All day exhibitions & performances',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-0dBaKjJgWnR8SfTj3OT42Up2pGV5uV5KbQ&s',  // no confirmed image
+    description: 'A cultural / art expo event involving tattoo art and local artists; held in October in prior years. (As per event listings) :contentReference[oaicite:2]{index=2}',
+    type: 'workshop'
+  },
+  '2026-11-02': {
+    title: 'Tihar – Bhai Tika (sibling blessings)',
+    location: 'Across Sikkim, especially among Nepali communities',
+    time: 'Morning to evening rituals & family visits',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRKEJLxmfW1Xnqo828_EabVficN79yRksIqQ&s',
+    description: 'As part of the Tihar / Diwali festival cycle, Bhai Tika is when sisters put tika on their brothers’ foreheads, seek blessings, and pray for their well-being. :contentReference[oaicite:1]{index=1}',
+    type: 'festival'
+  },
+  '2026-11-10': {
+    title: 'Bala Chaturdashi Observance',
+    location: 'Kirateshwar Mahadev Temple, Legship (Gyalshing area)',
+    time: 'Early morning to dusk rituals',
+    image: 'https://culturesofnepal.wordpress.com/wp-content/uploads/2019/11/bala-chaturthi.jpg',
+    description: 'The Kirateshwar Mahadev Temple in Legship (Gyalshing district) observes Bala Chaturdashi around November–December. :contentReference[oaicite:2]{index=2}',
+    type: 'ritual'
+  },
+  '2026-11-12': {
+    title: 'Bhumchu Ceremony (tentative)',
+    location: 'Tashiding Monastery, West Sikkim',
+    time: 'Morning rituals & water-vase blessing',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ603wxmZGZbdMaJ2hPUwujTMqCIZpoDMUKJA&s',
+    description: 'Although Bhumchu is typically held in February/March in Sikkim, in some contexts it is noted in Buddhist calendars as a water-vase ritual tied to the ninth lunar month (which may fall around November). :contentReference[oaicite:3]{index=3}',
+    type: 'ritual'
+  },
+  '2026-12-01': {
+    title: 'Losoong / Namsoong Festival (Start)',
+    location: 'Monasteries across Sikkim (Rumtek, Phodong, etc.)',
+    time: 'Morning to evening, multi-day festival',
+    image: 'https://northeastlive.s3.amazonaws.com/media/uploads/2024/12/vvvvasdd.png',  // to fill later
+    description: 'Losoong (also called Namsoong) is the Sikkimese / Bhutia New Year festival, marking the end of the harvest season. It features masked dances (Chaams), archery, cultural programs, and celebrations of victory of good over evil. :contentReference[oaicite:0]{index=0}',
+    type: 'festival'
+  },
+  '2026-12-28': {
+    title: 'Kagyed Dance Festival',
+    location: 'Tsuklakhang Palace, Gangtok & other monasteries',
+    time: 'Morning to afternoon',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD9ufQHRxbU1ncVwppUKP-c3dPsR6EVr1FEg&s',
+    description: 'Kagyed (or Kagyad) is a Buddhist dance festival held on the 28th & 29th day of the 10th month of the Tibetan calendar, which typically falls in early December. Monks perform ritual dances, sometimes interspersed with jesters. :contentReference[oaicite:1]{index=1}',
+    type: 'festival'
+  },
+  '2026-12-24': {
+    title: 'Pelling Winter / Kanchenjunga Tourism Festival',
+    location: 'Pelling, West Sikkim',
+    time: 'Multi-day (around 24–26 December)',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJPOPHPXg1jhvYsBOtE90OQ32o6kDjXxMSuw&s',
+    description: 'This winter tourism festival in Pelling (also called Kanchenjunga Winter Tourism Festival) is held in December with cultural events, adventure sports, local arts & crafts, performances. :contentReference[oaicite:2]{index=2}',
+    type: 'festival'
+  },
+  '2026-12-25': {
+    title: 'Christmas Celebrations',
+    location: 'Churches & Christian communities across Sikkim',
+    time: 'Evening services & cultural programs',
+    image: 'https://i.natgeofe.com/k/dfc7bec2-0657-4887-81a7-6d024a8c3f70/WH-XmasTree_4x3.jpg',
+    description: 'Christmas is observed by Christian communities in Sikkim with special church services, carols, feasts, and festive decoration. :contentReference[oaicite:4]{index=4}',
+    type: 'festival'
+  },
+  '2026-12-30': {
+    title: 'Limboo / Srijunga Birth Anniversary (full moon December)',
+    location: 'Hee Bermiok / Martam, West Sikkim',
+    time: 'Morning to evening with community programs',
+    image: 'https://1001things.org/wp-content/uploads/2019/06/Statue-of-Mahatma-Sirijunga6-1.jpg',
+    description: 'In Hee Bermiok / Martam area, on a full moon day in December, the Limboo community celebrates the birth anniversary of Mahatma Srijunga, with prayers, dances (Limboo, Maruni), and cultural programs. :contentReference[oaicite:6]{index=6}',
+    type: 'ritual'
   } 
   };
 

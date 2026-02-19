@@ -8,7 +8,7 @@ const router = express.Router();
 
 // const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-// const genAI = new GoogleGenerativeAI("AIzaSyDaWRIg7WEsYZm1tHfe0UjF03kMzEeTGpI"); // Backend env var
+
 
 router.post("/", async (req, res) => {
   try {
